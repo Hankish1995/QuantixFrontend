@@ -1,0 +1,48 @@
+.navbar-nav{
+    margin-left: auto;
+    align-items: center;
+    gap: 16px;
+}
+.flag_outer {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.flag_outer img{
+    height: 30px;
+    width: 30px;
+}
+.notification_outer {
+    position: relative;
+}
+.notification_outer svg{
+    font-size: 30px;
+}
+.notification_text {
+    position: absolute;
+    top: -1px;
+    left: 14px;
+    height: 18px;
+    width: 18px;
+    background: red;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    font-size: 13px;
+}
+.navbar-toggler:focus{
+    box-shadow: unset !important;
+}
+nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
+    background: white !important;
+}
+
+
+@media screen and (max-width:991px){
+    .navbar-nav {
+    align-items: start !important;
+    margin: 20px 0px;
+    }
+    
+}

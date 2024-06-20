@@ -1,0 +1,137 @@
+.dashboard_plan_heading{
+    padding: 20px;
+    font-weight: 600;
+    border-top: 1px solid #DBDADE;
+}
+.select_plan_outer {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+.submit_plan_btn{
+    width: 200px;
+}
+
+.select_btn{
+    width: 92px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.cmn_status_text{
+    padding: 7px 17px;
+    border-radius: 4px;
+    margin-left: 31px;
+    font-size: 14px;
+  
+}
+
+.table_plan td{ 
+ padding: 20px !important;
+    
+}
+.table_plan  h6{
+    margin-bottom: 0px !important;
+    line-height: 30px;
+}
+.table_plan tr td:nth-child(2){ 
+    
+    color: #A8AAAE;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .table_plan tr td:first-child{ 
+    color:  #4B465C;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .table_plan thead tr th{ 
+    color:  #4B465C;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 5px 20px;
+
+  }
+  .Search_plans_input::placeholder{
+    color: #A8AAAE;
+  }
+.dashboardmenu_container{
+    height: 100vh;
+}
+.actions_wrapper svg{
+    color:  #4B465C;
+}
+
+.table_plan thead tr{
+    border-top: 1px solid #ddd;
+}
+/* dashboard menu-------------------------------------------------- */
+.submit_plan_heading{
+    color: #B7B5BE;
+}
+.drop_file_input{
+    display: none;
+}
+
+label#drop_file {
+    width: 100%;
+    border: 1px dashed #ddd;
+    padding: 40px;
+    margin-top: 16px;
+    border-radius: 10px;
+}
+.file_upload {
+    width: 50px;
+    height: 50px;
+    background: #f1f0f2;
+    border-radius: 6px;
+    text-align: center;
+    padding-top: 12px;
+}
+.file_upload svg{
+    font-size: 20px;
+}
+h3.drop_file_text{
+    font-weight: 600;
+}
+
+
+button.review_btn {
+    color: #7367F0;
+    border: 1px solid #7367F0;
+    border-radius: 6px;
+    padding: 5px 20px;
+    background: white;
+}
+.submit-Plan_btn{
+padding:5px 20px;
+}
+.review_btn_outer {
+    margin-top: 26px;
+    padding: 0px 20px;
+}
+.Plan_Details_heading {
+    color: #4B465C;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+@media screen and (max-width:991px){
+    .dashboard_plan_heading {
+        padding: 17px
+    }
+}
+@media screen and (max-width:767px){
+    .search_plan_wrapper.d-flex.gap-3 {
+        margin-top: 20px;
+    }
+    .select_plan_outer{
+        flex-wrap: wrap;
+    }
+    .table_plan tr td:first-child {
+        font-size: 14px
+    }
+    .table_plan h6{
+        font-size: 14px
+    }
+}
