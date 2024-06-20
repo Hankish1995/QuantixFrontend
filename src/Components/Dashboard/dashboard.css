@@ -1,8 +1,4 @@
-.dashboard_plan_heading{
-    padding: 20px;
-    font-weight: 600;
-    border-top: 1px solid #DBDADE;
-}
+
 .select_plan_outer {
     display: flex;
     padding: 20px;
@@ -16,6 +12,7 @@
     width: 92px;
     border: 1px solid #ddd;
     border-radius: 6px;
+    color:#4B465C
 }
 
 .cmn_status_text{
@@ -33,6 +30,7 @@
 .table_plan  h6{
     margin-bottom: 0px !important;
     line-height: 30px;
+    font-size: 15px;
 }
 .table_plan tr td:nth-child(2){ 
     
@@ -56,7 +54,9 @@
     color: #A8AAAE;
   }
 .dashboardmenu_container{
-    height: 100vh;
+    margin-bottom: 20px;
+    height: 100%;
+    min-height: 100vh;
 }
 .actions_wrapper svg{
     color:  #4B465C;
@@ -117,9 +117,7 @@ padding:5px 20px;
 }
 
 @media screen and (max-width:991px){
-    .dashboard_plan_heading {
-        padding: 17px
-    }
+  
 }
 @media screen and (max-width:767px){
     .search_plan_wrapper.d-flex.gap-3 {
@@ -127,6 +125,9 @@ padding:5px 20px;
     }
     .select_plan_outer{
         flex-wrap: wrap;
+    }
+    label#drop_file{
+        padding: 20px;
     }
     .table_plan tr td:first-child {
         font-size: 14px
