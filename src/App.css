@@ -114,4 +114,7 @@ input:focus-visible {
   .cmn_small_heading {
     font-size: 13px;
   }
+  .cmn_heading_style {
+    font-size: 15px;
+}
 }

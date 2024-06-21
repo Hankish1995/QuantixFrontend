@@ -69,6 +69,23 @@
     border-bottom:1px solid #DBDADE;;
     margin: auto 20px;
   }
+
+  /* otp  */
+
+  .otp-inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+  }
+  
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 @media screen and (min-width:1920px){
     .login_container{
         height: 100vh;
@@ -84,6 +101,6 @@
     }
     .signin_btn {
         padding: 6px 20px;
-
+        font-size: 14px;
     }
   }

@@ -79,6 +79,7 @@ label#drop_file {
     padding: 40px;
     margin-top: 16px;
     border-radius: 10px;
+    cursor: pointer;
 }
 .file_upload {
     width: 50px;

@@ -1,8 +1,9 @@
 import React from 'react'
-
-const Button = ({btntext,type,className}) => {
+import SpinnerLoder from './SpinnerLoder'
+import "./commonStyle.css"
+const Button = ({btntext,type,className,isLoading}) => {
   return (
-    <button className={className} type={type}>{btntext}</button>
+    <button className={className} type={type}>{isLoading ?<SpinnerLoder/>:btntext }</button>
   )
 }
 

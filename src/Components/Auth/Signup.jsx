@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 import logo from "../Images/signup_logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signupSchema } from "../Utils/Validation/Validation";
 import SocialLogin from "../CommonComponents/SocialLogin";
 import CommonRectangleImg from "../CommonComponents/CommonRectangleImg";
 import SquareImg from "../CommonComponents/SquareImg";
 import Button from "../CommonComponents/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { UseSignUp } from "../Utils/customHooks/AuthHooks/AuthHooks";
+import { toast } from "react-toastify";
+import { clear_signUp_slice } from "../Utils/Store/AuthSlice/AuthSlice";
 
 const Signup = () => {
+
+  const signUp = UseSignUp()
+  
+  const signUpData = useSelector((Store) => {return Store.SIGNUP_SLICE})
+ 
+  const navigate=useNavigate()
   const formik = useFormik({
     initialValues: {
      userName: "",
@@ -19,10 +29,24 @@ const Signup = () => {
     },
     validationSchema: signupSchema,
     onSubmit: (values) => {
-      console.log(values,"values");
-      
+      signUp(values.userName,values.email,values.password)
+
+     
     },
   });
+  
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    if(signUpData.isError===true){
+      toast.error(signUpData.error.message)
+      dispatch(clear_signUp_slice())
+    }
+    else if(signUpData.isSuccess===true){
+      toast.success(signUpData.data.message)
+      dispatch(clear_signUp_slice())
+      navigate("/")
+    }
+  },[signUpData])
 
   return (
     <section className="login_container">
@@ -58,7 +82,7 @@ const Signup = () => {
             <div className="form-group">
               <div className="password_outer d-flex">
                 <label>Password</label>
-                <h6 className="span_text">Forgot Password?</h6>
+                <h6 className="span_text"><Link to={"/forgot-password"}>Forgot Password?</Link></h6>
               </div>
               <input value={formik.values.password}  type="password" className="form-control" name="password" onChange={formik.handleChange} onBlur={formik.handleBlur}/>
               {formik.touched.password && formik.errors.password ? (
@@ -74,7 +98,7 @@ const Signup = () => {
               </h6>
             </div>
             
-            <Button btntext={"Sign up"} className={"cmn_btn signin_btn"} type={"submit"}/>
+            <Button isLoading={signUpData?.isLoading} btntext={"Sign up"} className={"cmn_btn signin_btn"} type={"submit"}/>
           
           </form>
           <h3 className="cmn_small_heading text-center mt-3">

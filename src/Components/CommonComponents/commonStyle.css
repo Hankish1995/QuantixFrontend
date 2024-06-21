@@ -28,3 +28,7 @@
     background: #f9e1df;
     color: #db4437;
 }
+.spinner_loader_outer .spinner-border {
+    height: 26px;
+    width: 26px;
+}

@@ -5,8 +5,11 @@ import left_right_icon from "../Images/left-right-icon.svg"
 import { BsThreeDotsVertical } from "react-icons/bs";
 import arrow_icon from "../Images/Arrow-top-down.svg"
 import Pagination from '../Pagination/Pagination';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
+
+  const data = useSelector((store) => {return store.SIGNUP_SLICE})
   return (
     <div className='dashboard_container cmn_container cmn_width'>
       <h3 className='cmn_heading_style dashboard_plan_heading'>Dashboard Plans</h3>
@@ -23,11 +26,8 @@ const Dashboard = () => {
           <button className='cmn_btn submit_plan_btn'>Submit Plans</button>
         </div>
 
-
       </div>
     
-    
-   
       <div className='table-responsive'>
     
       <table className='table_plan table'>
@@ -69,7 +69,7 @@ const Dashboard = () => {
         </thead>
         <tbody>
           <tr>
-            <td>Enterprise</td>
+            <td>Company</td>
             <td>Marge.Jacobson@gmail.com</td>
             <td><span className='active_btn cmn_status_text'>Active</span></td>
             <td>
@@ -97,7 +97,7 @@ const Dashboard = () => {
             
           </tr>
           <tr>
-            <td>Enterprise</td>
+            <td>Basic</td>
             <td>Marge.Jacobson@gmail.com</td>
             <td><span className='pending_btn cmn_status_text'>Pending</span></td>
             <td>
@@ -108,12 +108,9 @@ const Dashboard = () => {
 
               </div>
             </td>
-            
           </tr>
         </tbody>
       </table>
-
-     
 
       </div>
       {/* pagination */}

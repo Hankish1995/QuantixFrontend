@@ -7,8 +7,14 @@ import user_img from "../Images/userAvatar.svg"
 import { IoIosNotificationsOutline } from "react-icons/io";
 
 import "./Header.css"
+import { useNavigate } from 'react-router';
 const Header = () => {
-
+  const navigate=useNavigate()
+  
+const logoutHandler=()=>{
+localStorage.clear("token")
+navigate("/")
+}
       return (
         <header className='navbar_outer cmn_width'>
         <Navbar expand="lg" className="bg-body-tertiary">

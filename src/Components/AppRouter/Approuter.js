@@ -5,6 +5,10 @@ import Signup from "../Auth/Signup";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardMenu from "../Dashboard/DashboardMenu";
 import Report from "../Report/Report";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ForgotPassword from "../Auth/ForgotPassword";
+import VerifyOtp from "../Auth/VerifyOtp";
+import ResetPassword from "../Auth/ResetPassword";
 const AppRouter = createBrowserRouter([
     {
         path : "/",
@@ -19,17 +23,36 @@ const AppRouter = createBrowserRouter([
                 element : <Signup />
             },
             {
-                path : "/dashboard",
-                element : <Dashboard/>
+                path : "/forgot-password",
+                element : <ForgotPassword />
             },
             {
-                path : "/menu",
-                element : <DashboardMenu/>
+                path : "/verify-otp",
+                element : <VerifyOtp />
             },
             {
-                path : "/report",
-                element : <Report/>
+                path : "/reset-password",
+                element : <ResetPassword />
             },
+            {
+                path:"/",
+                element:<ProtectedRoute/>,
+                children:[
+                    {
+                        path : "/dashboard",
+                        element : <Dashboard/>
+                    },
+                    {
+                        path : "/menu",
+                        element : <DashboardMenu/>
+                    },
+                    {
+                        path : "/report",
+                        element : <Report/>
+                    },
+                ]
+            },
+           
            
         
             
