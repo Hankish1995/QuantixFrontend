@@ -1,0 +1,30 @@
+.social_login_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social_login_content {
+    display: flex;
+    gap: 10px;
+}
+
+.social_media_outer {
+    height: 38px;
+    width: 38px;
+    border-radius:6px;
+    text-align: center;
+    padding-top: 6px;
+}
+.FaFacebookF {
+    background: #e1e7f3;
+    color: #4267b3;
+}
+.FaTwitter {
+    color: #1da1f2;
+    background: #dbf0fd;
+}
+.FaGoogle {
+    background: #f9e1df;
+    color: #db4437;
+}

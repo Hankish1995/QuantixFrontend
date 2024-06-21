@@ -1,38 +1,117 @@
-.App {
-  text-align: center;
+.public-sans{
+  font-family: "Public Sans", sans-serif;
+  font-style: normal;
+}
+h1,h3,h2,h4,h5,h6,label{
+  font-family:"Public Sans", sans-serif ;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.cmn_btn{
+  border: none;
+  background: #7367F0;
   color: white;
+  border-radius: 6px;
 }
-
-.App-link {
-  color: #61dafb;
+.cmn_heading_style{
+  color:  #5d586c;
+  font-size: 22px;
+  font-weight: 700;
 }
+.white_bg{
+  background-color: white;
+}
+.cmn_container {
+  background: #f8f7fa;
+}
+.error{
+  color:red;
+  font-size: 14px;
+}
+.cmn_padding{
+  padding: 20px;
+}
+ul{
+  padding-left: 0px !important;
+  margin-bottom: 0px !important;
+}
+.active_btn{
+  color: #28C76F;
+  background-color: #ddf6e8;
+}
+.pending_btn{
+  color: #FF9F43;
+  background-color: #fef0e1;
+}
+.inactive_btn{
+  background-color: #f1f1f2;
+  color: #A8AAAE;
+}
+ul{
+  list-style-type: none;
+}
+.cmn_small_heading{
+  color: #4B465C;
+  font-size: 15px;
+  font-weight: 400;
+}
+.large_font{
+  color: #4B465C;
+  font-size: 32px;
+  font-weight: 600;
+}
+.italic_font{
+  font-weight: 400;
+  font-size: 15px;
+  font-style: italic;
+  color: #4B465C;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+}
+.cmn_box-shadow {
+  box-shadow: 2px 2px 10px #e4e3e3;
+}
+.dashboard_plan_heading{
+  padding: 20px;
+  font-weight: 600;
+  border-top: 1px solid #DBDADE;
+}
+.form-control:focus{
+  box-shadow: unset !important;
+}
+select:focus-visible {
+  outline:none !important;
+}
+input:focus-visible {
+  outline:none !important;
+}
+.form-control:focus{
+  border-color: #7064e8 !important; 
+}
+@media screen and (min-width:1600px){
+  .cmn_width{
+      width: 88%;
+      margin: auto;
+
   }
-  to {
-    transform: rotate(360deg);
+}
+@media screen and (max-width:1439px){
+  .cmn_heading_style {
+      font-size: 20px;
+  }
+  .large_font{
+    font-size: 26px;
+  }
+}
+@media screen and (max-width:991px){
+  .cmn_heading_style {
+    font-size: 18px;
+  }
+  .dashboard_plan_heading {
+    padding: 17px
+}
+}
+
+@media screen and (max-width:767px){
+  .cmn_small_heading {
+    font-size: 13px;
   }
 }

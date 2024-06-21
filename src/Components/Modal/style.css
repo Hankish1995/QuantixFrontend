@@ -1,0 +1,10 @@
+.reviewModal_outer button.btn-close {
+    display: none !important;
+}
+.review_modal_header{
+    padding: 20px 20px 0px;
+}
+.cross_icon   svg{
+    font-size: 30px;
+    cursor: pointer;
+}
