@@ -43,7 +43,7 @@ const AppRouter = createBrowserRouter([
                         element : <Dashboard/>
                     },
                     {
-                        path : "/menu",
+                        path : "/addPlan",
                         element : <DashboardMenu/>
                     },
                     {
