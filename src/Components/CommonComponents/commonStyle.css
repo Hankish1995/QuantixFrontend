@@ -10,23 +10,24 @@
 }
 
 .social_media_outer {
-    height: 38px;
-    width: 38px;
-    border-radius:6px;
-    text-align: center;
-    padding-top: 6px;
+    height: 38px !important;
+    width: 38px !important;
+    border-radius:6px !important;
+    text-align: center !important;
+    box-shadow: unset !important;
 }
 .FaFacebookF {
-    background: #e1e7f3;
-    color: #4267b3;
+    background: #e1e7f3 !important;
+    color: #4267b3 !important;
+    box-shadow: unset !important;
 }
 .FaTwitter {
-    color: #1da1f2;
-    background: #dbf0fd;
+    color: #1da1f2 !important;
+    background: #dbf0fd !important;
 }
 .FaGoogle {
-    background: #f9e1df;
-    color: #db4437;
+    background: #f9e1df !important;
+    color: #db4437 !important;
 }
 .spinner_loader_outer .spinner-border {
     height: 26px;

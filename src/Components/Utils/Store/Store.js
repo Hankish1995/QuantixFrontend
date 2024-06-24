@@ -4,6 +4,7 @@ import login_slice  from './AuthSlice/LoginSlice'
 import forgot_password_slice from './AuthSlice/ForgotPasswordSlice'
 import verify_otp_slice from './AuthSlice/VerifyOtpSlice'
 import clear_reset_password_slice  from './AuthSlice/ResetPasswordSlice'
+import socialLogin_slice  from './AuthSlice/SocialFacebookLogin'
 
 
 const store = configureStore({
@@ -12,7 +13,9 @@ const store = configureStore({
     LOGIN_SLICE:login_slice,
     FORGOT_PASSWORD_SLICE:forgot_password_slice,
     VERIFY_OTP_SLICE:verify_otp_slice,
-    RESET_PASSWORD:clear_reset_password_slice
+    RESET_PASSWORD:clear_reset_password_slice,
+    SOCIAL_LOGIN:socialLogin_slice
+    
   },
 })
 
