@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 
 
+
 const SocialLogin = () => {
   const[facebookLoginData,setFacebookLoginData]=useState()
   const[googleLoginData,setGooglLoginData]=useState()
@@ -87,21 +88,16 @@ console.log(process.env.REACT_APP_TWITTER_APP_ID,"key")
             {/* twitter login */}
             <div className=''>
               <LoginSocialTwitter 
+              
+
               client_id={process.env.REACT_APP_TWITTER_APP_ID}
               client_secret={process.env.REACT_APP_TWITTER_SECRET_KEY}
               onResolve={((response)=>{
                 console.log(response,"twiiter response")
                 setTwitterLoginData(response)
-                // if(response){
-
-                //   dispatch(socialLoginActions({providerName:response.provider,providerId:response.data.userID,email:response.data.email}))
-                // }
-
-             
-               
               })}
                 onReject={((error)=>{console.log(error,"error while login with twitter")})}
-                scope="email"
+                scope="babita.gurung@ultivic.com"
                 redirect_uri={process.env.REACT_APP_VITE_APP_OAUTH2_REDIRECT_URL} 
               >
 

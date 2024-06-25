@@ -52,4 +52,9 @@ export const signupSchema = Yup.object().shape({
 
   });
 
-  
+  // add plan validation 
+
+  export const addPlanSchema =Yup.object().shape({
+    planName: Yup.string().required("This field is required"),
+    planAddress: Yup.string().required("This field is required"),
+  });

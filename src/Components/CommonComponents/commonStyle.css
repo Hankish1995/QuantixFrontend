@@ -15,6 +15,7 @@
     border-radius:6px !important;
     text-align: center !important;
     box-shadow: unset !important;
+    padding: 7px !important;
 }
 .FaFacebookF {
     background: #e1e7f3 !important;
@@ -29,6 +30,9 @@
     background: #f9e1df !important;
     color: #db4437 !important;
 }
+/* .loader_outer{
+    height: calc(100vh - 60px);
+} */
 .spinner_loader_outer .spinner-border {
     height: 26px;
     width: 26px;

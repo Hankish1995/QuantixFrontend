@@ -6,10 +6,12 @@
 }
 .submit_plan_btn{
     width: 200px;
+    height: 38px;
 }
 
 .select_btn{
     width: 92px;
+    height: 38px;
     border: 1px solid #ddd;
     border-radius: 6px;
     color:#4B465C
@@ -72,8 +74,10 @@
 .drop_file_input{
     display: none;
 }
-
-label#drop_file {
+.trash-icon{
+    cursor: pointer;
+}
+.drop_file_wrapper{
     width: 100%;
     border: 1px dashed #ddd;
     padding: 40px;

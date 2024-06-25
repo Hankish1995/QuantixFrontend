@@ -3,12 +3,13 @@ import Login from "../Auth/Login"
 import { createBrowserRouter } from "react-router-dom";
 import Signup from "../Auth/Signup";
 import Dashboard from "../Dashboard/Dashboard";
-import DashboardMenu from "../Dashboard/DashboardMenu";
+
 import Report from "../Report/Report";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ForgotPassword from "../Auth/ForgotPassword";
 import VerifyOtp from "../Auth/VerifyOtp";
 import ResetPassword from "../Auth/ResetPassword";
+import AddPlan from "../Dashboard/AddPlan";
 const AppRouter = createBrowserRouter([
     {
         path : "/",
@@ -44,7 +45,7 @@ const AppRouter = createBrowserRouter([
                     },
                     {
                         path : "/addPlan",
-                        element : <DashboardMenu/>
+                        element : <AddPlan/>
                     },
                     {
                         path : "/report",
