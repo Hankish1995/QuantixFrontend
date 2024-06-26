@@ -10,8 +10,6 @@ import { clear_sociallogin_slice, socialLoginActions } from '../Utils/Store/Auth
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 
-
-
 const SocialLogin = () => {
   const[facebookLoginData,setFacebookLoginData]=useState()
   const[googleLoginData,setGooglLoginData]=useState()
@@ -24,7 +22,7 @@ const SocialLogin = () => {
 const dispatch=useDispatch()
 
 const socialLoginStoreData=useSelector((store)=>{return(store.SOCIAL_LOGIN)})
-console.log(socialLoginStoreData,"socialLoginStoreData")
+
 
 useEffect(()=>{
 if(socialLoginStoreData.isSuccess===true){
@@ -58,7 +56,7 @@ toast.error(error)
   console.error('Google login failure:', error);
 };
 
-console.log(process.env.REACT_APP_TWITTER_APP_ID,"key")
+
   return (
     <div className='social_login_wrapper'>
         <div className='social_login_content'>
@@ -97,7 +95,7 @@ console.log(process.env.REACT_APP_TWITTER_APP_ID,"key")
                 setTwitterLoginData(response)
               })}
                 onReject={((error)=>{console.log(error,"error while login with twitter")})}
-                scope="babita.gurung@ultivic.com"
+                scope="email"
                 redirect_uri={process.env.REACT_APP_VITE_APP_OAUTH2_REDIRECT_URL} 
               >
 
@@ -131,6 +129,8 @@ console.log(process.env.REACT_APP_TWITTER_APP_ID,"key")
               preventActiveStyles={true}/>
             </LoginSocialGoogle>
            
+       
+
          
         </div>
     </div>

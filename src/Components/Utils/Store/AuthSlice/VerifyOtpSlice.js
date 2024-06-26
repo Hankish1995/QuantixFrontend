@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const verifyOtpAction=createAsyncThunk("verifyOtpAction",async({email,otp},thunkAPI)=>{
- console.log(email,"email","otp",otp)
+
     try {
         const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

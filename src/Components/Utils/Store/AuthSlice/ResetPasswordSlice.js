@@ -10,7 +10,7 @@ const initialState={
 
 
 export const resetPasswordAction=createAsyncThunk("resetPasswordAction",async({email,password,confirmPassword},thunkAPI)=>{
-    console.log("email",email)
+   
     try {
         const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

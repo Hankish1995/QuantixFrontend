@@ -79,7 +79,7 @@ const capitalLiseString=(str)=>{
 return modStr
 
 }
-console.log(getAllPlansData?.loading,"loading")
+
 
   return (
      
@@ -169,7 +169,7 @@ console.log(getAllPlansData?.loading,"loading")
               <tr key={i}>
               <td>{capitalLiseString(data.planName)}</td>
               <td>{data.planAddress}</td>
-              <td><span className='active_btn cmn_status_text'>{data.status===false? "Inactive":"Active"}</span></td>
+              <td><span className={`cmn_status_text ${data.status===false? "inactive_btn":"active_btn"}`}>{data.status===false? "Inactive":"Active"}</span></td>
               <td>
                 <div className='d-flex gap-3 justify-content-end actions_wrapper'>
                 <img src={left_right_icon} alt='left_right_icon' height="20px" width="20px"/>

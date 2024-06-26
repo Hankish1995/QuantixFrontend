@@ -5,7 +5,7 @@
     justify-content: space-between;
 }
 .submit_plan_btn{
-    width: 200px;
+    width: 139px;
     height: 38px;
 }
 
@@ -33,6 +33,7 @@
     margin-bottom: 0px !important;
     line-height: 30px;
     font-size: 15px;
+    color: #6f6b7d;
 }
 .table_plan tr td:nth-child(2){ 
     
@@ -41,7 +42,7 @@
     font-size: 14px;
   }
   .table_plan tr td:first-child{ 
-    color:  #4B465C;
+    color:  #6f6b7d;
     font-weight: 600;
     font-size: 16px;
   }
@@ -138,6 +139,10 @@ padding:5px 20px;
         font-size: 14px
     }
     .table_plan h6{
-        font-size: 14px
+        font-size: 14px;
+        line-height:23px
+    }
+    .submit_plan_btn {
+        width: 134px;
     }
 }

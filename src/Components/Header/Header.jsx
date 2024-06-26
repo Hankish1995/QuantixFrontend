@@ -9,7 +9,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import "./Header.css"
 import { useNavigate } from 'react-router';
 const Header = () => {
-  const navigate=useNavigate()
+const navigate=useNavigate()
   
 const logoutHandler=()=>{
 localStorage.clear("token")

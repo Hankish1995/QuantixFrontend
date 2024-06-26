@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const socialLoginActions=createAsyncThunk("socialLoginActions",async({providerName,providerId,email},thunkAPI)=>{
-console.log(providerName,providerId,email,"payload")
+
   try {
     const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");

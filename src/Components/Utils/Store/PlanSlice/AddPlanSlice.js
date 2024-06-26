@@ -10,7 +10,7 @@ const initialState={
 // add plan actions
 
 export const addPlanActions=createAsyncThunk("addPlanActions",async({planName,planAddress,planImg},thunkAPI)=>{
-    console.log(planName,planAddress,planImg,planImg.length,"planName,planAddress,planImg")
+   
     try {
         const myHeaders = new Headers();
 

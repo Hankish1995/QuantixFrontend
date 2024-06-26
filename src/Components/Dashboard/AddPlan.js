@@ -7,6 +7,7 @@ import { addPlanSchema } from '../Utils/Validation/Validation';
 import { addPlanActions, clear_add_plan_slice } from '../Utils/Store/PlanSlice/AddPlanSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
+import SpinnerLoder from '../CommonComponents/SpinnerLoder';
 
 
 
@@ -135,7 +136,7 @@ const dispatch=useDispatch()
     </div>
         <div className='text-end review_btn_outer'>
             <button className='review_btn'>Review</button>
-            <button className='cmn_btn submit-Plan_btn ms-3' type='submit'>Submit Plans</button>
+            <button className='cmn_btn submit-Plan_btn ms-3' type='submit'> {addPlanData?.loading?<SpinnerLoder/> :"Submit Plans"}</button>
         </div>
         </form>
     </div>

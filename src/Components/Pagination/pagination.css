@@ -46,4 +46,15 @@ li.previous a {
     .pagination_wrapper ul{
         flex-wrap: wrap;
     }
+    .pagination_wrapper li:last-child{
+    width: 61px;
+    }
+    .pagination_wrapper li:first-child {
+    width: 97px;
+    }
+    .pagination_wrapper ul li {
+    height: 30px;
+    width: 30px;   
+    font-size: 14px;
+    }
  }
