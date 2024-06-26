@@ -1,7 +1,7 @@
 .pagination_wrapper ul{
     justify-content: end !important;
     display: flex;
-    gap: 15px;
+    gap: 10px;
 }
 .pagination_wrapper ul li {
     height: 34px;
@@ -36,7 +36,7 @@ li.selected {
     color: white !important;
 }
 .pagination_wrapper li:first-child{
-    width: 120px;
+    width: 97px;
 }
 li.previous a {
     text-decoration: unset;

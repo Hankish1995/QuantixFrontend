@@ -104,7 +104,7 @@ const Signup = () => {
           <h3 className="cmn_small_heading text-center mt-3">
             Already have an account?{" "}
             <span className="span_text">
-              <Link to="/">sign in instaed</Link>
+              <Link to="/">sign in instead</Link>
             </span>
           </h3>
           <h5 className="or_text">Or</h5>

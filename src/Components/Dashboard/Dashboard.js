@@ -55,23 +55,8 @@ const handlePageClick = (event ) => {
 const selectHandler =(e)=>{
 setLimit(e.target.value)
 }
-const submitPlanHandler=(e)=>{
-  e.preventDefault()
-  if(searchPlan===""){
-    setError(true)
-  }else{
-    setShowButton(true)
-    setError(false)
-    dispatch(getAllPlanActions({currentPage,limit,searchPlan}))
-    // dispatch(clear_getall_plan_slice())
-
-  }
-}
-
-const clearPlanHandler=()=>{
-  setShowButton(false)
-  setSearchPlan("")
-  dispatch(getAllPlanActions({currentPage,limit,searchPlan:""}))
+const submitPlanHandler=()=>{
+  navigate("/addPlan")
 }
 
 const capitalLiseString=(str)=>{
@@ -100,16 +85,17 @@ return modStr
         <div className='search_plan_wrapper d-flex gap-3'>
           <div>
       
-          <input  disabled={showButton} value={searchPlan} onChange={(e)=>{setSearchPlan(e.target.value)}}  type='text' className='form-control Search_plans_input' placeholder='Search plans'/>
-          {error?<p className='error'>Required</p>:""}
+          <input  disabled={showButton} value={searchPlan} onChange={(e)=>{setSearchPlan(e.target.value)
+            dispatch(getAllPlanActions({currentPage,limit,searchPlan}))
+          }}  type='text' className='form-control Search_plans_input' placeholder='Search plans'/>
+        
 
           </div>
-          {showButton ?<button className='cmn_btn submit_plan_btn' onClick={clearPlanHandler}>Clear Plan</button>: 
           <div>
             
             <button className='cmn_btn submit_plan_btn' onClick={submitPlanHandler}>Submit Plans</button>
           </div>
-          }
+          
           
         </div>
 
