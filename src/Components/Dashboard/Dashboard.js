@@ -21,11 +21,8 @@ const Dashboard = () => {
  const[currentPage,setCurrentPage]=useState(1)
  const[limit,setLimit]=useState(5)
  const[searchPlan,setSearchPlan]=useState("")
- const[showButton,setShowButton]=useState(false)
- const[error,setError]=useState(false)
- 
 
-  const dispatch=useDispatch()
+const dispatch=useDispatch()
 const navigate=useNavigate()
 
 useEffect(()=>{
@@ -40,7 +37,9 @@ useEffect(()=>{
     dispatch(clear_delete_plan_slice())
     dispatch(getAllPlanActions({currentPage,limit,searchPlan}))
   }
-},[deletePlanData,currentPage,limit])
+},[deletePlanData,currentPage,limit,searchPlan])
+
+
 
 // delete plan handler
 const deletePlanHandler=(id)=>{
@@ -85,8 +84,8 @@ return modStr
         <div className='search_plan_wrapper d-flex gap-3'>
           <div>
       
-          <input  disabled={showButton} value={searchPlan} onChange={(e)=>{setSearchPlan(e.target.value)
-            dispatch(getAllPlanActions({currentPage,limit,searchPlan}))
+          <input   value={searchPlan} onChange={(e)=>{setSearchPlan(e.target.value)
+           
           }}  type='text' className='form-control Search_plans_input' placeholder='Search plans'/>
         
 

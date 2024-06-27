@@ -75,6 +75,11 @@
     font-family: "Public Sans", sans-serif;
     font-weight: 500;
 }
+.report_response_outer{
+    height: 500px;
+    overflow-y: scroll;
+    
+}
 .legend_heading{
     color : #4B465C;
     font-size: 15px;
@@ -84,10 +89,14 @@
 }
 .report_diagram{
     height: 500px;
-    width: 500px;
+    width: 100%;
+    object-fit: contain;
 }
 .report_outer .dashboard_plan_heading {
     padding-bottom: 0px;
+}
+.plan_name_heading{
+    font-size: 24px;
 }
 @media screen and (max-width:991px){
     .report_diagram{

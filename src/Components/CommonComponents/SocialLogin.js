@@ -96,6 +96,7 @@ toast.error(error)
               })}
                 onReject={((error)=>{console.log(error,"error while login with twitter")})}
                 scope="email"
+                state="756f9825-392c-4c71-b33a-b616a4333b5"
                 redirect_uri={process.env.REACT_APP_VITE_APP_OAUTH2_REDIRECT_URL} 
               >
 

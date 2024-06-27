@@ -12,6 +12,7 @@ import { UseLogin } from '../Utils/customHooks/AuthHooks/AuthHooks'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { clear_login_slice } from '../Utils/Store/AuthSlice/LoginSlice'
+import TwitterLogin from "../CommonComponents/TwitterLogin"
 
 
 const Login = () => {
@@ -100,6 +101,7 @@ const navigate=useNavigate()
 
 
 {/* social login  */}
+<TwitterLogin/>
 <SocialLogin/>
     </div>
     </div>

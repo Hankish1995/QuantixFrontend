@@ -11,6 +11,7 @@ import { forgotPasswordAction } from '../Utils/Store/AuthSlice/ForgotPasswordSli
 import { toast } from 'react-toastify'
  import {clear_forgotpassword_slice} from "../Utils/Store/AuthSlice/ForgotPasswordSlice"
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 const ForgotPassword = () => {
 
 const dispatch=useDispatch()
@@ -58,13 +59,14 @@ else if(forgotPasswordData.isSuccess){
 
     <div className='login_content'>
    <h4 className='cmn_heading_style mt-4'>Forgot Password </h4>
-  
+   
 
    <form onSubmit={formik.handleSubmit}>
    <div className='form-group mb-3'>
     <label>Email</label>
   <input name='email' onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} type='email' className='form-control'/>
    {formik.touched.email && formik.errors.email ? <p className="error">{formik.errors.email}</p>:""}
+   <h6 className="span_text"><Link to={"/"}>Login instead?</Link></h6>
    </div>
 
    <Button isLoading={forgotPasswordData?.isLoading} type={'submit'} className={'cmn_btn signin_btn'} btntext={"Forgot Password"}/>
