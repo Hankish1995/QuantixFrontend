@@ -31,6 +31,8 @@
 .signin_btn {
     padding: 10px 20px;
     width: 100%;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .form-group label{
@@ -86,10 +88,27 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+  .forgotpassword_container h6{
+    text-align: right;
+    padding-top: 12px;
+    font-size: 14px;
+
+  }
 @media screen and (min-width:1920px){
     .login_container{
         height: 100vh;
     }
+}
+@media screen and (min-width:1536px){
+.form-group label {
+font-size: 18px;
+}
+.forgotpassword_container h6{
+font-size: 18px;
+}
+.signin_btn {
+    font-size: 20px;
+}
 }
   @media screen and (max-width:767px){
     .login_wrapper{
