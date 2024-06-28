@@ -99,6 +99,9 @@
     font-size: 24px;
 }
 @media screen and (max-width:991px){
+    .report_content_outer {
+        margin-top: 25px;
+    }
     .report_diagram{
         width: 100%;
         height: 100%;
@@ -125,9 +128,12 @@
     .zone_content_wrapper {
         padding: 18px;
     }
-    /* .legend_outer {
-        padding: 16px;
-    } */
+    .badrequest_img{
+    object-fit: contain;
+    height: 227px;
+    width: 100%;
+}
+   
     .report_content_outer {
         padding: 16px;
     }

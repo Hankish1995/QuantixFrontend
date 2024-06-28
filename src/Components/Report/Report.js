@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./Report.css";
 
 import { useSelector } from 'react-redux';
@@ -6,20 +6,36 @@ import DOMPurify from 'dompurify';
 import Loader from '../CommonComponents/Loader';
 import { useLocation } from 'react-router';
 import { capitalLiseString } from '../Utils/CommonUtils';
-
+import NotFound from '../Error/NotFound';
+import badrequest_img from "../Images/400_img.png"
 const Report = () => {
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
-  console.log(addPlanData, "this is from the report page")
   const [apiResponse, setApiResponse] = useState('');
-  console.log(apiResponse, "tthis osi the api response")
   const location = useLocation();
   const { data } = location.state || {};
   const { planName, image } = data || {};
-  console.log(planName, image, "data from add plan")
+  const divRef = useRef(null);
 
-  const imageUrl = URL.createObjectURL(image[0]);
 
+  const[success,setSuccess]=useState()
+  const[error,setError]=useState()
+  const[loading,setLoading]=useState()
+
+  useEffect(()=>{
+    setSuccess(addPlanData.isSuccess)
+    setError(addPlanData.isError)
+    setLoading(addPlanData.loading)
+  },[addPlanData])
+
+
+ 
+
+  let imageUrl
   useEffect(() => {
+ if(image){
+
+    imageUrl = URL.createObjectURL(image[0]);
+ }
     if (addPlanData?.isSuccess) {
       let processedContent;
 
@@ -52,8 +68,10 @@ const Report = () => {
     // Clean up unwanted characters
     content = content.replace(/["`,./[\]#\\]/g, '');
 
+    content = content.replace(/stream started/gi, '');
+    content = content.replace(/stream ended/gi, '');
     // Replace markdown symbols with HTML equivalents
-    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert **text** to <strong>text</strong>
+    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert *text* to <strong>text</strong>
 
     // Split lines by newline and process each row
     const rows = htmlContent.split('\n');
@@ -75,8 +93,11 @@ const Report = () => {
     // Clean up unwanted characters
     content = content.replace(/["`,./[\]#\\]/g, '');
 
+    content = content.replace(/stream started/gi, '');
+    content = content.replace(/stream ended/gi, '');
+
     // Replace markdown symbols with HTML equivalents
-    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert **text** to <strong>text</strong>
+    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert *text* to <strong>text</strong>
     htmlContent = htmlContent.replace(/\|/g, '</td><td>'); // Convert | to </td><td>
 
     // Wrap table rows and cells in HTML table structure
@@ -88,54 +109,67 @@ const Report = () => {
     return htmlContent;
   };
 
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollTop = divRef.current.scrollHeight;
+    }
 
+  }, [apiResponse]);
 
+  
   return (
-    <section className='report_outer cmn_width'>
-      <div className='dashboard_container cmn_container pb-4'>
-        <h3 className='cmn_heading_style dashboard_plan_heading'><span className='submit_plan_heading'>Dashboard</span>/Review</h3>
-        <h4 className='cmn_heading_style ps-4 plan_name_heading'> {capitalLiseString(planName)}</h4>
-        <div className='row cmn_padding'>
-          <div className='col-lg-6 col-sm-12 col-md-6 '>
-            <div className='white_bg report_content_outer'>
-              <div className='zone_outer'>
+    <>
+{!success && !error && !loading ? 
+<NotFound/>
+  :
+  
+  <section className='report_outer cmn_width'>
+  <div className='dashboard_container cmn_container pb-4'>
+    <h3 className='cmn_heading_style dashboard_plan_heading'><span className='submit_plan_heading'>Dashboard</span>/Review</h3>
+    {/* <h4 className='cmn_heading_style ps-4 plan_name_heading'> {capitalLiseString(planName)}</h4> */}
+    <div className='row cmn_padding'>
+      <div className='col-lg-6 col-sm-12 col-md-6 '>
+        <div className='white_bg report_content_outer'>
+          <div className='zone_outer'>
 
 
-              </div>
-              {/* diagram */}
-              <div className='report_diagram_wrapper'>
-                <img src={imageUrl} alt='report_diagram' className='report_diagram' />
-
-              </div>
-
-            </div>
+          </div>
+   
+          <div className='report_diagram_wrapper'>
+            <img src={imageUrl} alt='report_diagram' className='report_diagram' />
 
           </div>
 
-          <div className='col-lg-6 col-sm-12 col-md-6 '>
-            <div className='white_bg report_content_outer'>
-              <div className='legend_outer'>
-                <h3 className='legend_heading pt-4 px-4'>Legend</h3>
-                <ul className='legend_list'>
-                  <li>
-                    {addPlanData?.loading ? <Loader /> :
-                      <div className='zone_content_wrapper report_response_outer'>
-                        {/* <div dangerouslySetInnerHTML={{ __html: apiResponse }} /> */}
-                        <div dangerouslySetInnerHTML={{ __html: apiResponse }} />
-                      </div>
-                    }
-                  </li>
-
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
-        <div className='confirm_submit_btn_outer text-end me-3'>
-          <button className='cmn_btn confirm_submit_btn'>Confirm Submit</button>
+
+      </div>
+
+      <div className='col-lg-6 col-sm-12 col-md-6 '>
+        <div className='white_bg report_content_outer'>
+          <div className='legend_outer'>
+            <h3 className='legend_heading pt-4 px-4'>Legend</h3>
+            <ul className='legend_list'>
+              <li>
+                {addPlanData?.loading ? <Loader /> :
+                  <div className='zone_content_wrapper report_response_outer' ref={divRef}>
+                  {addPlanData?.isError ? <img className='badrequest_img' src={badrequest_img} height="100%" width="100%"/>:
+                    <div dangerouslySetInnerHTML={{ __html: apiResponse }} />}
+                  </div>
+                }
+              </li>
+
+            </ul>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+    <div className='confirm_submit_btn_outer text-end me-3'>
+      <button className='cmn_btn confirm_submit_btn'>Confirm Submit</button>
+    </div>
+  </div>
+</section>
+}
+    </>
   );
 }
 

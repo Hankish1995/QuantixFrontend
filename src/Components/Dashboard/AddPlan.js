@@ -59,7 +59,7 @@ const AddPlan = () => {
     },
     validationSchema: addPlanSchema,
     onSubmit: (values) => {
-     
+      if(imageUrl){
       dispatch(
         addPlanActions({
           planName: values.planName,
@@ -67,11 +67,17 @@ const AddPlan = () => {
           planImg: files,
         })
       );
+    
 
-      navigate('/report', { state: { data: {
-        planName: formik.values.planName,
-        image: files
-      } } });
+        navigate('/report', { state: { data: {
+          planName: formik.values.planName,
+          image: files
+        } } });
+    
+      }else{
+        toast.error("Image Required")
+      }
+
     },
   });
 

@@ -12,6 +12,11 @@ h1,h3,h2,h4,h5,h6,label{
   color: white;
   border-radius: 6px;
 }
+.back_btn{
+  padding: 20px;
+  padding: 8px 35px;
+
+}
 .cmn_heading_style{
   color:  #5d586c;
   font-size: 22px;

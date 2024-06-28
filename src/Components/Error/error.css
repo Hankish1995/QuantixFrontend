@@ -1,0 +1,19 @@
+
+@media screen and (min-width:1440px) {
+    .not_found_wrapper{
+        height: 100vh;
+        align-items: center;
+    }
+}
+ @media screen and (max-width:767px) {
+    
+     .NotFound_img{
+     width: 100%;
+     object-fit: contain;
+     height: 249px;
+     }
+     .not_found_wrapper {
+        height: 100vh;
+        align-items: center;
+    }
+ }

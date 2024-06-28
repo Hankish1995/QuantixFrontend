@@ -10,6 +10,7 @@ import ForgotPassword from "../Auth/ForgotPassword";
 import VerifyOtp from "../Auth/VerifyOtp";
 import ResetPassword from "../Auth/ResetPassword";
 import AddPlan from "../Dashboard/AddPlan";
+import NotFound from "../Error/NotFound";
 const AppRouter = createBrowserRouter([
     {
         path : "/",
@@ -51,6 +52,8 @@ const AppRouter = createBrowserRouter([
                         path : "/report",
                         element : <Report/>
                     },
+                   
+                    
                 ]
             },
            
@@ -58,6 +61,7 @@ const AppRouter = createBrowserRouter([
         
             
         ],
+        errorElement : <NotFound/>
         
     },
 ])
