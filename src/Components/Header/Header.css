@@ -41,9 +41,13 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
     height: 22px;
     width: 22px;
 }
+.logout_btn {
+    padding: 7px 17px;
+    font-size: 15px;
+}
 @media screen and (min-width:1536px){
     .header_outer {
-        padding: 20px 40px
+        padding: 20px 0px
     }
 }
 @media screen and (max-width:991px){

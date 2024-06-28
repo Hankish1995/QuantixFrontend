@@ -16,8 +16,8 @@ localStorage.clear("token")
 navigate("/")
 }
       return (
-        <header className='navbar_outer cmn_width'>
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <header className='navbar_outer'>
+        <Navbar expand="lg" className="bg-body-tertiary cmn_width">
           <div className='header_outer container-fluid'>
    
           <div className='d-flex login_header gap-2 align-items-center justify-content-center'>
@@ -37,7 +37,7 @@ navigate("/")
                 <div className='notification_text'>4</div>
                 </div>
                 <img src={user_img} alt='user_img' />
-
+                <button onClick={logoutHandler} className='cmn_btn  logout_btn'>Logout</button>
               </Nav>
             </Navbar.Collapse>
           </div>

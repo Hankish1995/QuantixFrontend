@@ -121,14 +121,12 @@ padding:7px 20px;
 }
 @media screen and (min-width:1536px){
     .dashboard_plan_heading{
-        padding: 30px 40px;
+        padding: 30px 0px;
     }
     .Plan_Details_heading {
         font-size: 22px;
     }
-    .plan_details_outer {
-        margin: 0px 40px;
-    }
+    
     .review_btn_outer{
         padding: 20px 40px;
     }

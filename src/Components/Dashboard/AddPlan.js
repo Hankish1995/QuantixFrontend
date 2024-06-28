@@ -98,7 +98,8 @@ const AddPlan = () => {
   }, [addPlanData]);
 
   return (
-    <div className="dashboardmenu_container cmn_container cmn_width">
+    <div className="dashboardmenu_container cmn_container ">
+      <div className="cmn_width">
       <h3 className="cmn_heading_style dashboard_plan_heading">
         <span className="submit_plan_heading">Dashboard</span>/Submit plan
       </h3>
@@ -197,6 +198,9 @@ const AddPlan = () => {
           </button>
         </div>
       </form>
+
+      </div>
+
     </div>
   );
 };

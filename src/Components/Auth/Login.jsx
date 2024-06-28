@@ -101,7 +101,7 @@ const navigate=useNavigate()
 
 
 {/* social login  */}
-<TwitterLogin/>
+{/* <TwitterLogin/> */}
 <SocialLogin/>
     </div>
     </div>

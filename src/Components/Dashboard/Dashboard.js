@@ -64,8 +64,8 @@ const submitPlanHandler=()=>{
 
   return (
      
-    <div className='dashboard_container cmn_container cmn_width'>
-
+    <div className='dashboard_container cmn_container '>
+     <div className='cmn_width'>
       <h3 className='cmn_heading_style dashboard_plan_heading'>Dashboard Plans</h3>
       <div className='white_bg cmn_box-shadow pb-3'>
       <div className='select_plan_outer'>
@@ -176,6 +176,8 @@ const submitPlanHandler=()=>{
       <Pagination pageCount={getAllPlansData?.data?.totalPages} handlePageClick={handlePageClick} totalCount={getAllPlansData?.data?.totalCount} currentPage={currentPage}/>
 
     </div>
+
+     </div>
      
     </div>
         
