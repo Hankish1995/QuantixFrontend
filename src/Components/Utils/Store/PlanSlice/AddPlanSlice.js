@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+// Initial State
 const initialState = {
-  data: {},
+  data: '',
   isSuccess: false,
   loading: false,
   error: null,
@@ -11,7 +12,7 @@ const initialState = {
 // Async Thunk Action Creator
 export const addPlanActions = createAsyncThunk(
   'plans/addPlan',
-  async ({ planName, planAddress, planImg }, thunkAPI) => {
+  async ({ planName, planAddress, planImg }, { dispatch, rejectWithValue }) => {
     try {
       const token = localStorage.getItem('token');
       const myHeaders = new Headers();
@@ -38,10 +39,22 @@ export const addPlanActions = createAsyncThunk(
         throw new Error(errorMessage.message);
       }
 
-      const data = await response.text(); // Assuming response is JSON
-      return data; // This will be dispatched to Redux store
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        const decodedValue = decoder.decode(value, { stream: true });
+        // Dispatch partial data as it streams in
+        dispatch(updateStreamData(decodedValue));
+      }
+
+      // Return final success state or data
+      return "Streaming Completed";
+
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -51,17 +64,21 @@ const addPlanSlice = createSlice({
   name: "addPlanSlice",
   initialState,
   reducers: {
-    clear_add_plan_slice: () => initialState
+    clear_add_plan_slice: () => initialState,
+    updateStreamData: (state, action) => {
+      state.data += action.payload; // Append new streamed data to existing data
+      state.loading = false
+      state.isSuccess = true
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(addPlanActions.pending, (state) => {
         state.loading = true;
       })
-      .addCase(addPlanActions.fulfilled, (state, action) => {
+      .addCase(addPlanActions.fulfilled, (state) => {
         state.loading = false;
         state.isSuccess = true;
-        state.data = action.payload;
       })
       .addCase(addPlanActions.rejected, (state, action) => {
         state.loading = false;
@@ -73,5 +90,5 @@ const addPlanSlice = createSlice({
 });
 
 // Export Actions and Reducer
-export const { clear_add_plan_slice } = addPlanSlice.actions;
+export const { clear_add_plan_slice, updateStreamData } = addPlanSlice.actions;
 export default addPlanSlice.reducer;

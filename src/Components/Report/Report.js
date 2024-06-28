@@ -10,37 +10,72 @@ import { useLocation } from 'react-router';
 
 const Report = () => {
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
-  console.log(addPlanData,"this is from the report page")
+  console.log(addPlanData, "this is from the report page")
   const [apiResponse, setApiResponse] = useState('');
-  console.log(apiResponse,"tthis osi the api response")
+  console.log(apiResponse, "tthis osi the api response")
   const location = useLocation();
   const { data } = location.state || {};
   const { planName, image } = data || {};
-console.log(planName,image,"data from add plan")
+  console.log(planName, image, "data from add plan")
 
-const imageUrl = URL.createObjectURL(image[0]);
+  const imageUrl = URL.createObjectURL(image[0]);
 
   useEffect(() => {
     if (addPlanData?.isSuccess) {
-      // Regex pattern to match the main content between "Stream started..." and "Stream ended..."
-      const contentRegex = /Stream started\.\.\.\n([\s\S]*)\nStream ended\./;
+      let processedContent;
 
-      // Match the main content using the regex pattern
-      const match = addPlanData?.data.match(contentRegex);
+      // Example pattern to detect a table format
+      const tableRegex = /^\|.*\|$/m; // Example: matches lines starting and ending with "|"
 
-      if (match) {
-        // Extract the main content excluding the start and end markers
-        const extractedContent = match[1];
+      // Function to determine format based on regex patterns
+      const determineFormat = (data) => {
+        if (tableRegex.test(data)) {
+          return 'table'; // Example: data appears to be in a table format
+        }
+        return 'default'; // Default handling
+      };
 
-        // Process the extracted content as needed (e.g., format into HTML)
-        let processedContent = formatContent(extractedContent); // Implement this function
+      // Match based on determined format or default
+      let format = determineFormat(addPlanData.data);
 
-        setApiResponse(processedContent);
+      if (format === 'table') {
+        processedContent = formatTableContent(addPlanData.data);
+      } else {
+        processedContent = formatContent(addPlanData.data);
       }
+
+      setApiResponse(processedContent);
     }
   }, [addPlanData]);
 
+  // Function to format table-like content
+  const formatTableContent = (content) => {
+    // Clean up unwanted characters
+    content = content.replace(/["`,./[\]#\\]/g, '');
+
+    // Replace markdown symbols with HTML equivalents
+    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert **text** to <strong>text</strong>
+
+    // Split lines by newline and process each row
+    const rows = htmlContent.split('\n');
+    htmlContent = '<table>';
+    rows.forEach(row => {
+      htmlContent += '<tr>';
+      const cells = row.split('|').filter(cell => cell.trim() !== '');
+      cells.forEach(cell => {
+        htmlContent += `<td>${cell.trim()}</td>`;
+      });
+      htmlContent += '</tr>';
+    });
+    htmlContent += '</table>';
+
+    return htmlContent;
+  };
+
   const formatContent = (content) => {
+    // Clean up unwanted characters
+    content = content.replace(/["`,./[\]#\\]/g, '');
+
     // Replace markdown symbols with HTML equivalents
     let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert **text** to <strong>text</strong>
     htmlContent = htmlContent.replace(/\|/g, '</td><td>'); // Convert | to </td><td>
@@ -53,6 +88,8 @@ const imageUrl = URL.createObjectURL(image[0]);
 
     return htmlContent;
   };
+
+
 
   return (
     <section className='report_outer cmn_width'>
@@ -93,8 +130,8 @@ const imageUrl = URL.createObjectURL(image[0]);
               </div>
               {/* diagram */}
               <div className='report_diagram_wrapper'>
-                <img src={imageUrl} alt='report_diagram' className='report_diagram'/>
-                
+                <img src={imageUrl} alt='report_diagram' className='report_diagram' />
+
               </div>
               {/* <div className='d-flex ground_floor_outer'>
                 <h3 className='report_zone_heading'>1</h3>
@@ -111,14 +148,14 @@ const imageUrl = URL.createObjectURL(image[0]);
                 <h3 className='legend_heading pt-4 px-4'>Legend</h3>
                 <ul className='legend_list'>
                   <li>
-                    {addPlanData?.loading? <Loader/>:
-                    <div className='zone_content_wrapper report_response_outer'>
-                    {/* <div dangerouslySetInnerHTML={{ __html: apiResponse }} /> */}
-                    <div dangerouslySetInnerHTML={{ __html: apiResponse }} />
-                    </div>
-}
+                    {addPlanData?.loading ? <Loader /> :
+                      <div className='zone_content_wrapper report_response_outer'>
+                        {/* <div dangerouslySetInnerHTML={{ __html: apiResponse }} /> */}
+                        <div dangerouslySetInnerHTML={{ __html: apiResponse }} />
+                      </div>
+                    }
                   </li>
-                  
+
                   {/* <li>
                     <div className='zone_content_wrapper'>
                       <h3 className='legend_heading text-danger'>Exposure Zone D</h3>
