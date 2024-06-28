@@ -99,7 +99,7 @@ const Report = () => {
           <div className='col-lg-6 col-sm-12 col-md-6 '>
             <div className='white_bg report_content_outer'>
               <div className='zone_outer'>
-               
+
 
               </div>
               {/* diagram */}
@@ -107,9 +107,9 @@ const Report = () => {
                 <img src={imageUrl} alt='report_diagram' className='report_diagram' />
 
               </div>
-             
+
             </div>
-           
+
           </div>
 
           <div className='col-lg-6 col-sm-12 col-md-6 '>
@@ -125,49 +125,7 @@ const Report = () => {
                       </div>
                     }
                   </li>
-<<<<<<< HEAD
 
-                  {/* <li>
-                    <div className='zone_content_wrapper'>
-                      <h3 className='legend_heading text-danger'>Exposure Zone D</h3>
-                      <p className='text-danger'>Lorem ipsum dolor sit amet consectetur. 
-                        Libero velit egestas pellentesque dolor  
-                        Purus vel phasellus volutpat elementum dignissim. 
-                      </p>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div className='zone_content_wrapper'>
-                      <h3 className='legend_heading'>Ventilation</h3>
-                      <p>Lorem ipsum dolor sit amet consectetur. Libero velit egestas
-                        mi quis augue elementum ac.
-                        Vel phasellus elit quam in sed vulputate quis sed.</p>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div className='zone_content_wrapper'>
-                      <h3 className='legend_heading'>Kitchen design</h3>
-                      <p>Lorem ipsum dolor sit amet consectetur. Libero velit 
-                        egestas pellentesque dolor mi quis augue elementum ac. 
-                        Purus vel phasellus.
-                      </p>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div className='zone_content_wrapper'>
-                      <h3 className='legend_heading'>Lighting</h3>
-                      <p>Lorem ipsum dolor sit amet consectetur. 
-                        Libero velit egestas pellentesque dolor mi quis augue elementum ac. 
-                        Purus vel phasellus volutpat .
-                      </p>
-                    </div>
-                  </li> */}
-=======
-                  
->>>>>>> 9ca5404e62d1227f381a7be064237ce1e0ff17cf
                 </ul>
               </div>
             </div>
