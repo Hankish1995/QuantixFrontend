@@ -9,13 +9,10 @@ import { capitalLiseString } from '../Utils/CommonUtils';
 
 const Report = () => {
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
-  console.log(addPlanData, "this is from the report page")
   const [apiResponse, setApiResponse] = useState('');
-  console.log(apiResponse, "tthis osi the api response")
   const location = useLocation();
   const { data } = location.state || {};
   const { planName, image } = data || {};
-  console.log(planName, image, "data from add plan")
 
   const imageUrl = URL.createObjectURL(image[0]);
 
