@@ -86,21 +86,36 @@ input:focus-visible {
 .form-control:focus{
   border-color: #7064e8 !important; 
 }
-@media screen and (min-width:1600px){
+@media screen and (min-width:1536px){
   .cmn_width{
       width: 88%;
       margin: auto;
-
   }
+  .cmn_padding{
+  padding: 30px 40px;
+  }
+  .cmn_heading_style{
+    font-size: 25px;
+  }
+  .cmn_small_heading{
+    font-size: 18px;
+  }
+ 
+
 }
 @media screen and (max-width:1439px){
-  .cmn_heading_style {
-      font-size: 20px;
-  }
+ 
   .large_font{
     font-size: 26px;
   }
 }
+ @media screen and (max-width:1280px){
+  .cmn_heading_style {
+    font-size: 18px;
+}
+ }
+
+ 
 @media screen and (max-width:991px){
   .cmn_heading_style {
     font-size: 18px;

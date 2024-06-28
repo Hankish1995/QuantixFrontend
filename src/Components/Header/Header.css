@@ -37,8 +37,15 @@
 nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
     background: white !important;
 }
-
-
+.navbar-toggler-icon{
+    height: 22px;
+    width: 22px;
+}
+@media screen and (min-width:1536px){
+    .header_outer {
+        padding: 20px 40px
+    }
+}
 @media screen and (max-width:991px){
     .navbar-nav {
     align-items: start !important;

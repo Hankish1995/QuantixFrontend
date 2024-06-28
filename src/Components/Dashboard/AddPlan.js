@@ -184,7 +184,7 @@ const AddPlan = () => {
           </div>
         </div>
         <div className="text-end review_btn_outer">
-          <button className="review_btn">Review</button>
+          <button className="review_btn" type="button">Review</button>
           <button className="cmn_btn submit-Plan_btn ms-3" type="submit">
             {" "}
             {addPlanData?.loading ? <SpinnerLoder /> : "Submit Plans"}

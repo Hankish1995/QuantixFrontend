@@ -11,6 +11,7 @@ import Loader from '../CommonComponents/Loader';
 import { toast } from 'react-toastify';
 import Pagination from '../Pagination/Pagination';
 import { useNavigate } from 'react-router';
+import { capitalLiseString } from '../Utils/CommonUtils';
 
 const Dashboard = () => {
 
@@ -58,11 +59,7 @@ const submitPlanHandler=()=>{
   navigate("/addPlan")
 }
 
-const capitalLiseString=(str)=>{
-  const modStr = str[0].toUpperCase() + str.slice(1);
-return modStr
 
-}
 
 
   return (

@@ -22,7 +22,7 @@
     border-radius: 4px;
     margin-left: 31px;
     font-size: 14px;
-  
+     font-weight: 600;
 }
 
 .table_plan td{ 
@@ -51,13 +51,12 @@
     font-weight: 600;
     font-size: 16px;
     padding: 5px 20px;
-
+    vertical-align: middle;
   }
   .Search_plans_input::placeholder{
     color: #A8AAAE;
   }
 .dashboardmenu_container{
-    margin-bottom: 20px;
     height: 100%;
     min-height: 100vh;
 }
@@ -110,21 +109,61 @@ button.review_btn {
     background: white;
 }
 .submit-Plan_btn{
-padding:5px 20px;
+padding:7px 20px;
 }
 .review_btn_outer {
-    margin-top: 26px;
-    padding: 0px 20px;
+    padding:20px;
 }
 .Plan_Details_heading {
     color: #4B465C;
     font-size: 18px;
     font-weight: 600;
 }
-
-@media screen and (max-width:991px){
-  
+@media screen and (min-width:1536px){
+    .dashboard_plan_heading{
+        padding: 30px 40px;
+    }
+    .Plan_Details_heading {
+        font-size: 22px;
+    }
+    .plan_details_outer {
+        margin: 0px 40px;
+    }
+    .review_btn_outer{
+        padding: 20px 40px;
+    }
+    .table_plan thead tr th {
+        padding: 10px 40px
+    }
+    .table_plan td{
+        padding: 20px 40px !important;
+    }
+    .select_plan_outer {
+        padding: 25px 40px;
+    }
+    .table_plan h6 {
+        font-size: 18px;
+    }
+    .table_plan tr td:first-child {
+        font-size: 20px ;
+      }
+      .table_plan tr td:nth-child(2){
+        font-size: 20px ;
+      }
+      .cmn_status_text {
+      font-size: 20px;
+    }
+    .Search_plans_input{
+      font-size: 20px;
+    }
+    .submit_plan_btn {
+      width: 200px;
+      height: 44px;
+      font-size: 20px;
+    }
 }
+
+
 @media screen and (max-width:767px){
     .search_plan_wrapper.d-flex.gap-3 {
         margin-top: 20px;
@@ -144,5 +183,15 @@ padding:5px 20px;
     }
     .submit_plan_btn {
         width: 134px;
+        font-size: 14px;
+    }
+    .submit-Plan_btn {
+        font-size: 14px;
+    }
+    button.review_btn {
+        font-size: 14px;
+    }
+    .Plan_Details_heading {
+        font-size: 16px;
     }
 }

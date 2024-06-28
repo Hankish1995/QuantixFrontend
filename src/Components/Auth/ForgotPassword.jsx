@@ -66,7 +66,7 @@ else if(forgotPasswordData.isSuccess){
     <label>Email</label>
   <input name='email' onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} type='email' className='form-control'/>
    {formik.touched.email && formik.errors.email ? <p className="error">{formik.errors.email}</p>:""}
-   <h6 className="span_text"><Link to={"/"}>Login instead?</Link></h6>
+   <h6 className="span_text"><Link to={"/"}>Sign in instead?</Link></h6>
    </div>
 
    <Button isLoading={forgotPasswordData?.isLoading} type={'submit'} className={'cmn_btn signin_btn'} btntext={"Forgot Password"}/>

@@ -10,7 +10,8 @@ const Pagination = ({pageCount,totalCount,handlePageClick,currentPage}) => {
         breakLabel="..."
         nextLabel="Next"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={totalCount}
+        marginPagesDisplayed={3}
+        pageRangeDisplayed={5}
         pageCount={pageCount}
         previousLabel="Previous"
         forcePage={currentPage - 1}
