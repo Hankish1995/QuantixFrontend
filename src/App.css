@@ -12,11 +12,36 @@ h1,h3,h2,h4,h5,h6,label{
   color: white;
   border-radius: 6px;
 }
+:focus:not(:focus-visible){
+ outline: none 
+} 
 .back_btn{
   padding: 20px;
   padding: 8px 35px;
 
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: rgb(247, 244, 244); 
+}
+ 
+
+::-webkit-scrollbar-thumb {
+  background: rgb(214, 207, 207); 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f8f6f6; 
+}
+
+.w-screen.aspect-video.-mt-40.pt-\[25\%\].px-24.absolute.text-white.bg-gradient-to-r.from-black {}
+
 .cmn_heading_style{
   color:  #5d586c;
   font-size: 22px;
@@ -133,6 +158,10 @@ input:focus-visible {
 @media screen and (max-width:767px){
   .cmn_small_heading {
     font-size: 13px;
+  }
+  .back_btn{
+    padding: 4px 23px;
+    font-size: 14px;
   }
   .cmn_heading_style {
     font-size: 15px;

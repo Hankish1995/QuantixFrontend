@@ -8,34 +8,40 @@ import { useLocation } from 'react-router';
 import { capitalLiseString } from '../Utils/CommonUtils';
 import NotFound from '../Error/NotFound';
 import badrequest_img from "../Images/400_img.png"
+import { toast } from 'react-toastify';
 const Report = () => {
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
   const [apiResponse, setApiResponse] = useState('');
+  const [image_data, setImage_data] = useState()
   const location = useLocation();
   const { data } = location.state || {};
   const { planName, image } = data || {};
   const divRef = useRef(null);
 
 
-  const[success,setSuccess]=useState()
-  const[error,setError]=useState()
-  const[loading,setLoading]=useState()
+  const [success, setSuccess] = useState()
+  const [error, setError] = useState()
+  const [loading, setLoading] = useState()
 
-  useEffect(()=>{
+  useEffect(() => {
     setSuccess(addPlanData.isSuccess)
     setError(addPlanData.isError)
     setLoading(addPlanData.loading)
-  },[addPlanData])
+  }, [addPlanData])
 
 
  
 
   let imageUrl
   useEffect(() => {
- if(image){
+    if(addPlanData.isError){
+      toast.error(addPlanData.error)
+    }
+    if (image) {
 
-    imageUrl = URL.createObjectURL(image[0]);
- }
+      imageUrl = URL.createObjectURL(image[0]);
+      setImage_data(imageUrl)
+    }
     if (addPlanData?.isSuccess) {
       let processedContent;
 
@@ -61,7 +67,7 @@ const Report = () => {
 
       setApiResponse(processedContent);
     }
-  }, [addPlanData]);
+  }, [addPlanData, image]);
 
   // Function to format table-like content
   const formatTableContent = (content) => {
@@ -71,7 +77,7 @@ const Report = () => {
     content = content.replace(/stream started/gi, '');
     content = content.replace(/stream ended/gi, '');
     // Replace markdown symbols with HTML equivalents
-    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert *text* to <strong>text</strong>
+    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert text to <strong>text</strong>
 
     // Split lines by newline and process each row
     const rows = htmlContent.split('\n');
@@ -97,7 +103,7 @@ const Report = () => {
     content = content.replace(/stream ended/gi, '');
 
     // Replace markdown symbols with HTML equivalents
-    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert *text* to <strong>text</strong>
+    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert text to <strong>text</strong>
     htmlContent = htmlContent.replace(/\|/g, '</td><td>'); // Convert | to </td><td>
 
     // Wrap table rows and cells in HTML table structure
@@ -116,59 +122,59 @@ const Report = () => {
 
   }, [apiResponse]);
 
-  
+
   return (
     <>
-{!success && !error && !loading ? 
-<NotFound/>
-  :
-  
-  <section className='report_outer cmn_width'>
-  <div className='dashboard_container cmn_container pb-4'>
-    <h3 className='cmn_heading_style dashboard_plan_heading'><span className='submit_plan_heading'>Dashboard</span>/Review</h3>
-    {/* <h4 className='cmn_heading_style ps-4 plan_name_heading'> {capitalLiseString(planName)}</h4> */}
-    <div className='row cmn_padding'>
-      <div className='col-lg-6 col-sm-12 col-md-6 '>
-        <div className='white_bg report_content_outer'>
-          <div className='zone_outer'>
+      {!success && !error && !loading ?
+        <NotFound />
+        :
+
+        <section className='report_outer cmn_width'>
+          <div className='dashboard_container cmn_container pb-4'>
+            <h3 className='cmn_heading_style dashboard_plan_heading'><span className='submit_plan_heading'>Dashboard</span>/Review</h3>
+           <h4 className='cmn_heading_style ps-4 plan_name_heading'> {capitalLiseString(planName)}</h4> 
+            <div className='row cmn_padding'>
+              <div className='col-lg-6 col-sm-12 col-md-6 '>
+                <div className='white_bg report_content_outer'>
+                  <div className='zone_outer'>
 
 
-          </div>
-   
-          <div className='report_diagram_wrapper'>
-            <img src={imageUrl} alt='report_diagram' className='report_diagram' />
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div className='col-lg-6 col-sm-12 col-md-6 '>
-        <div className='white_bg report_content_outer'>
-          <div className='legend_outer'>
-            <h3 className='legend_heading pt-4 px-4'>Legend</h3>
-            <ul className='legend_list'>
-              <li>
-                {addPlanData?.loading ? <Loader /> :
-                  <div className='zone_content_wrapper report_response_outer' ref={divRef}>
-                  {addPlanData?.isError ? <img className='badrequest_img' src={badrequest_img} height="100%" width="100%"/>:
-                    <div dangerouslySetInnerHTML={{ __html: apiResponse }} />}
                   </div>
-                }
-              </li>
 
-            </ul>
+                  <div className='report_diagram_wrapper'>
+                    <img src={image_data} alt='report_diagram' className='report_diagram' />
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div className='col-lg-6 col-sm-12 col-md-6 '>
+                <div className='white_bg report_content_outer'>
+                  <div className='legend_outer'>
+                    <h3 className='legend_heading pt-4 px-4'>Legend</h3>
+                    <ul className='legend_list'>
+                      <li>
+                        {addPlanData?.loading ? <Loader /> :
+                          <div className='zone_content_wrapper report_response_outer' ref={divRef}>
+                            {addPlanData?.isError ? <img className='badrequest_img' src={badrequest_img} height="100%" width="100%" /> :
+                              <div dangerouslySetInnerHTML={{ __html: apiResponse }} />}
+                          </div>
+                        }
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='confirm_submit_btn_outer text-end me-3'>
+              {/* <button className='cmn_btn confirm_submit_btn'>Confirm Submit</button> */}
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div className='confirm_submit_btn_outer text-end me-3'>
-      <button className='cmn_btn confirm_submit_btn'>Confirm Submit</button>
-    </div>
-  </div>
-</section>
-}
+        </section>
+      }
     </>
   );
 }

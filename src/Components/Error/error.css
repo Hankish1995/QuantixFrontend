@@ -1,4 +1,9 @@
-
+@media screen and (min-width:1900px){
+    .NotFound_img{
+        height: 700px;
+        width: 100%;
+    }
+}
 @media screen and (min-width:1440px) {
     .not_found_wrapper{
         height: 100vh;
