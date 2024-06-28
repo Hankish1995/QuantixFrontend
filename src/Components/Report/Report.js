@@ -129,8 +129,9 @@ const Report = () => {
         <NotFound />
         :
 
-        <section className='report_outer cmn_width'>
+        <section className='report_outer '>
           <div className='dashboard_container cmn_container pb-4'>
+            <div className='cmn_width'>
             <h3 className='cmn_heading_style dashboard_plan_heading'><span className='submit_plan_heading'>Dashboard</span>/Review</h3>
            <h4 className='cmn_heading_style ps-4 plan_name_heading'> {capitalLiseString(planName)}</h4> 
             <div className='row cmn_padding'>
@@ -171,6 +172,8 @@ const Report = () => {
             </div>
             <div className='confirm_submit_btn_outer text-end me-3'>
               {/* <button className='cmn_btn confirm_submit_btn'>Confirm Submit</button> */}
+            </div>
+
             </div>
           </div>
         </section>

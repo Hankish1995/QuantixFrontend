@@ -130,6 +130,9 @@ input:focus-visible {
   .cmn_small_heading{
     font-size: 18px;
   }
+  .report_outer .cmn_padding{
+    padding: 0px;
+  }
  
 
 }
