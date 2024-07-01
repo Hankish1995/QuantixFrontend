@@ -45,11 +45,28 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
     padding: 7px 17px;
     font-size: 15px;
 }
-@media screen and (min-width:1536px){
-    .header_outer {
-        padding: 20px 0px
-    }
+.profile_dropdown_outer{
+    background: transparent !important;
+    border: none !important;
+    padding: 0px;
+
 }
+.profile_item_wrapper{
+    cursor: pointer;
+}
+.header_outer_wrapper{
+    cursor: pointer;
+}
+.logout_text{
+    font-size: 18px ;
+    margin-bottom: 0px;
+}
+ @media screen and (min-width:992px){
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+        left: auto !important;
+        right: 1rem !important;
+    }
+ }
 @media screen and (max-width:991px){
     .navbar-nav {
     align-items: start !important;
@@ -57,3 +74,8 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
     }
     
 }
+ @media screen and (max-width:767px){
+    .logout_text {
+        font-size: 15px;
+    }
+ }

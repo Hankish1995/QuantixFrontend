@@ -84,7 +84,7 @@ toast.error(error)
               </LoginSocialFacebook>
            
             {/* twitter login */}
-            <div className=''>
+            {/* <div className=''>
               <LoginSocialTwitter 
               
 
@@ -110,7 +110,7 @@ toast.error(error)
               </TwitterLoginButton>
               </LoginSocialTwitter>
            
-            </div>
+            </div> */}
 
             {/* google login  */}
         

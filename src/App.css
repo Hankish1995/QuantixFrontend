@@ -7,10 +7,10 @@ h1,h3,h2,h4,h5,h6,label{
 }
 
 .cmn_btn{
-  border: none;
-  background: #7367F0;
-  color: white;
-  border-radius: 6px;
+  border: none !important;
+  background: #7367F0 !important;
+  color: white !important;
+  border-radius: 6px !important;
 }
 :focus:not(:focus-visible){
  outline: none 
@@ -43,9 +43,9 @@ h1,h3,h2,h4,h5,h6,label{
 .w-screen.aspect-video.-mt-40.pt-\[25\%\].px-24.absolute.text-white.bg-gradient-to-r.from-black {}
 
 .cmn_heading_style{
-  color:  #5d586c;
-  font-size: 22px;
-  font-weight: 700;
+  color:  #5d586c !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
 }
 .white_bg{
   background-color: white;
@@ -79,10 +79,13 @@ ul{
 ul{
   list-style-type: none;
 }
+input{
+  accent-color: #7367F0 ;
+}
 .cmn_small_heading{
-  color: #4B465C;
-  font-size: 15px;
-  font-weight: 400;
+  color: #4B465C !important;
+  font-size: 15px ;
+  font-weight: 400 !important;
 }
 .large_font{
   color: #4B465C;
@@ -116,23 +119,19 @@ input:focus-visible {
 .form-control:focus{
   border-color: #7064e8 !important; 
 }
+.cursor-pointer{
+  cursor: pointer;
+}
 @media screen and (min-width:1536px){
-  .cmn_width{
-      width: 88%;
-      margin: auto;
-  }
-  .cmn_padding{
-  padding: 30px 40px;
-  }
+
+
   .cmn_heading_style{
-    font-size: 25px;
+    font-size: 25px !important;
   }
   .cmn_small_heading{
     font-size: 18px;
   }
-  .report_outer .cmn_padding{
-    padding: 0px;
-  }
+ 
  
 
 }
@@ -144,14 +143,14 @@ input:focus-visible {
 }
  @media screen and (max-width:1280px){
   .cmn_heading_style {
-    font-size: 18px;
+    font-size: 18px !important;
 }
  }
 
  
 @media screen and (max-width:991px){
   .cmn_heading_style {
-    font-size: 18px;
+    font-size: 18px !important;
   }
   .dashboard_plan_heading {
     padding: 17px
@@ -167,6 +166,6 @@ input:focus-visible {
     font-size: 14px;
   }
   .cmn_heading_style {
-    font-size: 15px;
+    font-size: 15px !important;
 }
 }

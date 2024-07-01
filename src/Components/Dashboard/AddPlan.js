@@ -11,11 +11,12 @@ import {
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import SpinnerLoder from "../CommonComponents/SpinnerLoder";
+import { MdOutlineCancel } from "react-icons/md";
 
 const AddPlan = () => {
   const [files, setFiles] = useState([]);
   const [imageUrl, setImageUrl] = useState();
-
+console.log(imageUrl,"imageurl")
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -99,8 +100,8 @@ const AddPlan = () => {
 
   return (
     <div className="dashboardmenu_container cmn_container ">
-      <div className="cmn_width">
-      <h3 className="cmn_heading_style dashboard_plan_heading">
+      <div className="">
+      <h3 className="cmn_heading_style dashboard_plan_heading cursor-pointer" onClick={()=>{navigate("/dashboard")}}>
         <span className="submit_plan_heading">Dashboard</span>/Submit plan
       </h3>
       <form onSubmit={formik.handleSubmit}>
@@ -154,7 +155,12 @@ const AddPlan = () => {
                 {files.map((file, index) => (
                   <h3 className="cmn_heading_style" key={index}>
                     {file.name}
+                    <MdOutlineCancel className="ms-3" onClick={()=>{setFiles([]);
+                    setImageUrl("")
+                
+                    }}/>
                   </h3>
+
                 ))}
                 <img src={imageUrl} height={"200px"} width={"200px"}/>
               </div>

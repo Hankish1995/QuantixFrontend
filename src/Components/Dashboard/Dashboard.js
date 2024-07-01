@@ -12,7 +12,8 @@ import { toast } from 'react-toastify';
 import Pagination from '../Pagination/Pagination';
 import { useNavigate } from 'react-router';
 import { capitalLiseString } from '../Utils/CommonUtils';
-
+import DeletePlanModal from '../Modal/DeletePlan';
+import no_plan_img from "../Images/noplan_img.svg"
 const Dashboard = () => {
 
   const getAllPlansData = useSelector((store) => {return store.GET_ALL_PLAN_SLLICE})
@@ -22,6 +23,11 @@ const Dashboard = () => {
  const[currentPage,setCurrentPage]=useState(1)
  const[limit,setLimit]=useState(5)
  const[searchPlan,setSearchPlan]=useState("")
+
+ const[showDeletePlanModal,setShowDeletePlanModal]=useState(false)
+ const[id, setId]=useState()
+ 
+ const[input,setInput]=useState(false)
 
 const dispatch=useDispatch()
 const navigate=useNavigate()
@@ -43,8 +49,10 @@ useEffect(()=>{
 
 
 // delete plan handler
-const deletePlanHandler=(id)=>{
+const deletePlanHandler=()=>{
 dispatch(deletePlanActions(id))
+setShowDeletePlanModal(false)
+
 
 }
 
@@ -57,19 +65,22 @@ setLimit(e.target.value)
 }
 const submitPlanHandler=()=>{
   navigate("/addPlan")
+ 
 }
 
-
-
-
+const showDeletePlanModalHandler=(id)=>{
+setShowDeletePlanModal(true)
+setId(id)
+}
   return (
      
     <div className='dashboard_container cmn_container '>
-     <div className='cmn_width'>
+     <div className=''>
       <h3 className='cmn_heading_style dashboard_plan_heading'>Dashboard Plans</h3>
       <div className='white_bg cmn_box-shadow pb-3'>
-      <div className='select_plan_outer'>
-        <div>
+      <div className={`select_plan_outer ${getAllPlansData?.data?.plans?.length===0 ? "justify-content-end":"" }`}>
+        <div className={`${getAllPlansData?.data?.plans?.length===0 ? "d-none":"" }`}>
+      
         <select className='select_btn ' value={limit} onChange={(e) => selectHandler(e)}>
           <option value={5}>5</option>
           <option  value={10}>10</option>
@@ -79,25 +90,34 @@ const submitPlanHandler=()=>{
 
         </div>
         <div className='search_plan_wrapper d-flex gap-3'>
-          <div>
+          <div className={`${getAllPlansData?.data?.plans?.length===0 && !input?"d-none":""}`}>
       
-          <input   value={searchPlan} onChange={(e)=>{setSearchPlan(e.target.value)
-           
-          }}  type='text' className='form-control Search_plans_input' placeholder='Search plans'/>
+          <input    value={searchPlan} onChange={(e)=>{
+            setSearchPlan(e.target.value);
+            setInput(true)
+       
+          }}  type='text' className='form-control Search_plans_input' placeholder='Search plans name'/>
         
 
           </div>
           <div>
-            
-            <button className='cmn_btn submit_plan_btn' onClick={submitPlanHandler}>Submit Plans</button>
+            {input && searchPlan!="" ?  <button className='cmn_btn submit_plan_btn' onClick={()=>{
+              setInput(false);
+              setSearchPlan("")
+              dispatch(getAllPlanActions({currentPage,limit,searchPlan:""}))
+            }}>Clear Search</button>:
+            <button className='cmn_btn submit_plan_btn' onClick={submitPlanHandler}>Add Plans</button>}
           </div>
           
           
         </div>
 
       </div>
-    
-      <div className='table-responsive'>
+    {getAllPlansData?.data?.plans?.length===0 && !input  && currentPage === 1?
+          <div className='no_plan_img_outer d-flex justify-content-center'>
+         <img src={no_plan_img} className='no_plan_img'/>
+          </div> : 
+      <div className='table-responsive plan_tabular_data'>
     
       <table className='table_plan table'>
         <thead>
@@ -146,7 +166,16 @@ const submitPlanHandler=()=>{
     </tr>
       
       : 
-          getAllPlansData?.data && getAllPlansData?.data?.plans?.map((data,i)=>{
+      input && getAllPlansData?.data?.plans?.length==0?
+
+    <tr>
+ <td colSpan="4" style={{ textAlign: 'center' }}>
+      The plan you are looking for does not exist
+    </td>
+    </tr>
+      
+     :
+          getAllPlansData?.data?.plans?.map((data,i)=>{
             return(
               <tr key={i}>
               <td>{capitalLiseString(data.planName)}</td>
@@ -155,7 +184,7 @@ const submitPlanHandler=()=>{
               <td>
                 <div className='d-flex gap-3 justify-content-end actions_wrapper'>
                 <img src={left_right_icon} alt='left_right_icon' height="20px" width="20px"/>
-                <FaRegTrashAlt onClick={()=>{deletePlanHandler(data._id)}} className=' trash-icon'/>
+                <FaRegTrashAlt onClick={()=>{showDeletePlanModalHandler(data._id)}} className=' trash-icon'/>
                 <BsThreeDotsVertical />
   
                 </div>
@@ -165,16 +194,17 @@ const submitPlanHandler=()=>{
             )
           }) 
           
+        
           }
          
 
         </tbody>
       </table>
 
-      </div>
+      </div>}
       {/* pagination */}
       <Pagination pageCount={getAllPlansData?.data?.totalPages} handlePageClick={handlePageClick} totalCount={getAllPlansData?.data?.totalCount} currentPage={currentPage}/>
-
+      {showDeletePlanModal && <DeletePlanModal show={showDeletePlanModal} setShow={setShowDeletePlanModal} deleteHandler={deletePlanHandler}/>}
     </div>
 
      </div>

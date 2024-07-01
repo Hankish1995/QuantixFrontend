@@ -60,6 +60,10 @@
     height: 100%;
     min-height: 100vh;
 }
+.dashboard_container{
+    min-height: 100vh;
+    height: 100%;
+}
 .actions_wrapper svg{
     color:  #4B465C;
 }
@@ -119,17 +123,26 @@ padding:7px 20px;
     font-size: 18px;
     font-weight: 600;
 }
-@media screen and (min-width:1536px){
-    .dashboard_plan_heading{
-        padding: 30px 0px;
+.no_plan_img{
+    height: 400px;
+    width: 400px;
+}
+
+@media screen and (min-width:1900px) {
+    .no_plan_img {
+        height: 520px;
+        width: 520px;
     }
+}
+@media screen and (min-width:1536px){
+   
     .Plan_Details_heading {
         font-size: 22px;
     }
-    
-    .review_btn_outer{
-        padding: 20px 40px;
+    .plan_name_heading{
+    padding-left: 0px !important;
     }
+  
     .table_plan thead tr th {
         padding: 10px 40px
     }
@@ -191,5 +204,14 @@ padding:7px 20px;
     }
     .Plan_Details_heading {
         font-size: 16px;
+    }
+    .plan_tabular_data{
+        scrollbar-width: thin;
+    }
+    img.no_plan_img {
+        width: 100%;
+    }
+    .drop_file_text.mt-3 {
+        font-size: 16px !important;
     }
 }

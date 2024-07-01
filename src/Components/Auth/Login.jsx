@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./style.css"
 import heart_logo from "../Images/vuexy-logo.svg"
 import { Link, useNavigate } from 'react-router-dom'
@@ -18,25 +18,42 @@ import TwitterLogin from "../CommonComponents/TwitterLogin"
 const Login = () => {
 
 const loginaction=UseLogin()
+const[checked,setChecked]=useState(false)
 
 const loginData=useSelector((state)=>{return state.LOGIN_SLICE})
 
 const navigate=useNavigate()
+useEffect(() => {
+  const rememberedEmail = localStorage.getItem('email');
+  const rememberedPassword = localStorage.getItem('password');
+  if (rememberedEmail && rememberedPassword) {
+    formik.setValues({ email: rememberedEmail, password: rememberedPassword })
+    setChecked(true);
+  }
+}, []);
 
+console.log(checked,"checked")
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
+      password: ""
      
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
+      if(checked){
+        localStorage.setItem("password",values.password)
+        localStorage.setItem("email",values.email)
+        
+      }else{
+        localStorage.removeItem("password")
+        localStorage.removeItem("email")
+      }
       loginaction(values.email,values.password)
-
       
     },
   });
-
+  console.log(formik.values.email,"email")
   const dispatch=useDispatch()
   useEffect(()=>{
     if(loginData.isError===true){
@@ -87,7 +104,7 @@ const navigate=useNavigate()
    </div>
 
    <div className='d-flex gap-2 align-items-center mt-3 mb-3'>
-    <input type='checkbox'/>
+    <input type='checkbox'checked={checked} onChange={(e)=>setChecked(e.target.checked)}/>
     <h6 className='cmn_small_heading mb-0'>Remember Me</h6>
    </div>
    

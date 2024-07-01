@@ -7,6 +7,7 @@ const initialState = {
   loading: false,
   error: null,
   isError: false,
+  responseLoader:false,
 };
 
 // Async Thunk Action Creator
@@ -75,10 +76,12 @@ const addPlanSlice = createSlice({
     builder
       .addCase(addPlanActions.pending, (state) => {
         state.loading = true;
+        state.responseLoader=true
       })
       .addCase(addPlanActions.fulfilled, (state) => {
         state.loading = false;
         state.isSuccess = true;
+        state.responseLoader = false
       })
       .addCase(addPlanActions.rejected, (state, action) => {
         state.loading = false;
