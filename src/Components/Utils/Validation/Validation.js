@@ -54,3 +54,21 @@ export const signupSchema = Yup.object().shape({
     planName: Yup.string().required("This field is required"),
     planAddress: Yup.string().required("This field is required"),
   });
+
+  // change password 
+
+  export const ChangePasswordSchema=Yup.object().shape({
+    password:Yup.string().required("This field is required"),
+    newPassword:Yup.string().required("This field is required")
+    .min(8, "Pasword must be 8 or more characters")
+    .matches(/(?=.*[a-z])(?=.*[A-Z])\w+/, "Password ahould contain at least one uppercase and lowercase character")
+    .matches(/\d/, "Password should contain at least one number")
+    .matches(/[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/, "Password should contain at least one special character"),
+    confirmPassword: Yup.string().required("This field is required")
+      .when("newPassword", (password, schema) => {
+        return password
+          ? schema.required("Please confirm your password")
+                 .oneOf([Yup.ref("newPassword")], "Passwords must match")
+          : schema.notRequired();
+      })
+  })

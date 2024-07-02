@@ -1,24 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Report.css";
 import animation_loader_img from "../Images/Animation - 1719829224012 (2).gif"
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import DOMPurify from "dompurify";
 import Loader from "../CommonComponents/Loader";
 import { useLocation, useNavigate } from "react-router";
 import { capitalLiseString } from "../Utils/CommonUtils";
 import NotFound from "../Error/NotFound";
 import badrequest_img from "../Images/400_img.png";
+import noplan_img from "../Images/noplan_img.svg";
+
 import { toast } from "react-toastify";
+import { getPlanDetailsEstimates } from "../Utils/Store/PlanSlice/get_plan_details_slice";
 const Report = () => {
+  const dispatch = useDispatch()
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
-  console.log(addPlanData, "this is from the report page");
+  const plan_estimates = useSelector((store) => {return store.PLAN_ESTIMATES})
+
   const [apiResponse, setApiResponse] = useState("");
   const [image_data, setImage_data] = useState();
   const location = useLocation();
-  const { data } = location.state || {};
+  const { data,planId,isNotFound } = location.state || {};
+
+
+
   const { planName, image } = data || {};
   const divRef = useRef(null);
-console.log(image,"image")
+
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
@@ -28,6 +36,46 @@ console.log(image,"image")
     setError(addPlanData.isError);
     setLoading(addPlanData.loading);
   }, [addPlanData]);
+
+  useEffect(() => {
+    if(planId && !isNotFound){
+      dispatch(getPlanDetailsEstimates({planId :planId }))
+    }
+
+  },[!isNotFound,planId])
+
+  useEffect(() => {
+    if(plan_estimates?.isSuccess){
+      let processedContent;
+
+      // Example pattern to detect a table format
+      const tableRegex = /^\|.*\|$/m; // Example: matches lines starting and ending with "|"
+
+      // Function to determine format based on regex patterns
+      const determineFormat = (data) => {
+        if (tableRegex.test(data)) {
+          return "table"; // Example: data appears to be in a table format
+        }
+        return "default"; // Default handling
+      };
+
+      // Match based on determined format or default
+      let format = determineFormat(plan_estimates?.data?.data?.outputGenerated);
+
+      if (format === "table") {
+        processedContent = formatTableContent(plan_estimates?.data?.data?.outputGenerated);
+      } else {
+        processedContent = formatContent(plan_estimates?.data?.data?.outputGenerated);
+      }
+
+      setApiResponse(processedContent);
+    }
+
+    if(plan_estimates?.isError){
+      toast.error("Something went wrong")
+    }
+
+  },[plan_estimates])
 
   let imageUrl;
   useEffect(() => {
@@ -122,21 +170,21 @@ console.log(image,"image")
       divRef.current.scrollTop = divRef.current.scrollHeight;
     }
   }, [apiResponse]);
-
+  
   return (
     <>
-      {!success && !error && !loading ? (
+      {isNotFound && !success && !error && !loading ? (
         <NotFound />
       ) : (
         <section className="report_outer ">
           <div className="dashboard_container cmn_container pb-4">
             <div className="">
               <h3 className="cmn_heading_style dashboard_plan_heading cursor-pointer" onClick={()=>{navigate("/dashboard")}}>
-                <span className="submit_plan_heading">Dashboard</span>/View Report
+                <span className="submit_plan_heading">Dashboard</span>/Report
               </h3>
               <h4 className="cmn_heading_style ps-4 plan_name_heading">
                 {" "}
-                {capitalLiseString(planName)}
+                {(planName || plan_estimates?.data?.data?.planName) && capitalLiseString(planName ? planName : plan_estimates?.data?.data?.planName)}
               </h4>
               <div className="row cmn_padding">
                 <div className="col-lg-6 col-sm-12 col-md-6 ">
@@ -145,7 +193,7 @@ console.log(image,"image")
 
                     <div className="report_diagram_wrapper">
                       <img
-                        src={image_data}
+                        src={image_data ? image_data :  plan_estimates?.data?.data?.imageUrl}
                         alt="report_diagram"
                         className="report_diagram"
                       />

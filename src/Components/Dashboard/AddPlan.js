@@ -16,7 +16,7 @@ import { MdOutlineCancel } from "react-icons/md";
 const AddPlan = () => {
   const [files, setFiles] = useState([]);
   const [imageUrl, setImageUrl] = useState();
-console.log(imageUrl,"imageurl")
+
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,12 +46,39 @@ console.log(imageUrl,"imageurl")
     e.stopPropagation();
   };
 
+  // const handleFileSelect = (e) => {
+  //   const selectedFiles = Array.from(e.target.files);
+  //   setFiles(selectedFiles);
+  //   const imageUrl=URL.createObjectURL(selectedFiles[0])
+  //   setImageUrl(imageUrl)
+  // };
+
+
   const handleFileSelect = (e) => {
+
     const selectedFiles = Array.from(e.target.files);
-    setFiles(selectedFiles);
-    const imageUrl=URL.createObjectURL(selectedFiles[0])
-    setImageUrl(imageUrl)
+    const selectedFile = e.target.files[0];
+    const validTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+    const validExtensions = ['png', 'jpg', 'jpeg'];
+  
+    if (selectedFile) {
+      const fileType = selectedFile.type;
+      const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
+  
+      if (validTypes.includes(fileType) && validExtensions.includes(fileExtension)) {
+        setFiles(selectedFiles);
+        const imageUrl = URL.createObjectURL(selectedFiles[0]);
+        setImageUrl(imageUrl);
+      } else {
+        toast.error('This file format not allowed. You can only add images having extensions :jpeg,png,jpg ');
+        setImageUrl('');
+      }
+    } else {
+      toast.error('No file selected');
+      setImageUrl('');
+    }
   };
+  
 
   const formik = useFormik({
     initialValues: {
@@ -85,7 +112,7 @@ console.log(imageUrl,"imageurl")
   const addPlanData = useSelector((store) => {
     return store.ADD_PLAN_SLICE;
   });
-  console.log(addPlanData, "addPlanData");
+
 
   useEffect(() => {
     if (addPlanData.isSuccess) {

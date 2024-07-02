@@ -32,7 +32,7 @@ useEffect(() => {
   }
 }, []);
 
-console.log(checked,"checked")
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -53,7 +53,7 @@ console.log(checked,"checked")
       
     },
   });
-  console.log(formik.values.email,"email")
+
   const dispatch=useDispatch()
   useEffect(()=>{
     if(loginData.isError===true){
@@ -65,6 +65,8 @@ console.log(checked,"checked")
       localStorage.setItem("token",loginData?.data?.userObj?.token  )
       localStorage.setItem("username",loginData?.data?.userObj?.username)
       localStorage.setItem("email",loginData?.data?.userObj?.email)
+      localStorage.setItem("user_id",loginData?.data?.userObj?._id)
+   
       
       dispatch(clear_login_slice())
       navigate("/dashboard")

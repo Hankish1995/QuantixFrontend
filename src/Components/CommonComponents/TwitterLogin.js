@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const TWITTER_URL = 'https://twitter.com';
 const TWITTER_API_URL = 'https://api.twitter.com';
@@ -30,7 +31,7 @@ const TwitterLogin = ({
   };
 
   const handleCode = async () => {
-      console.log("hlo")
+  
       const code = new URLSearchParams(window.location.search).get('code');
       if (code) {
         setIsLoading(true);
@@ -53,7 +54,7 @@ const TwitterLogin = ({
             },
           });
           const tokenResponse = await data.json();
-           console.log(tokenResponse,"tokenResponse")
+         
 
           if (tokenResponse.access_token) {
             const profileUrl = `${TWITTER_API_URL}/2/users/me?user.fields=${fields}`;
@@ -63,10 +64,10 @@ const TwitterLogin = ({
               },
             });
             const userData = await profileResponse.json();
-          console.log(userData,"userData")
+     
             // Delay logging user data after redirect
             setTimeout(() => {
-              console.log('User Data:', userData);
+           
 
               // Assuming 'id' and 'email' are fields returned by Twitter API
               onResolve({
@@ -91,7 +92,7 @@ const TwitterLogin = ({
     };
  
   useEffect(() => {
-    console.log("hlo outside")
+   
     
 
     window.addEventListener('popstate', handleCode);
@@ -104,7 +105,7 @@ const accessTokenSecret="pEI20yFBxYTWw4LQpLCpKlqOL77rI9kToQngBcU2qEiJ6"
 
   const fetchUserInfo = async () => {
     if (!bearerToken) {
-      console.error('Bearer token is not set in environment variables.');
+      toast.error('Bearer token is not set in environment variables.');
       return;
     }
 
@@ -124,10 +125,10 @@ const accessTokenSecret="pEI20yFBxYTWw4LQpLCpKlqOL77rI9kToQngBcU2qEiJ6"
       }
 
       const userData = await response.json();
-      console.log('User Data:', userData);
+      
      
     } catch (error) {
-      console.error('Error fetching user info:', error);
+      toast.error('Error fetching user info:', error);
     } finally {
       setIsLoading(false);
     }

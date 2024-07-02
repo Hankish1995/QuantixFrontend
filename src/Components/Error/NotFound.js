@@ -2,8 +2,8 @@ import { useNavigate, useRouteError } from "react-router-dom";
 import NotFound_img from "../Images/404img.png"
 import "./error.css"
 const NotFound = () => {
-  const error = useRouteError();
-  console.log(error, "this is the error");
+
+
   const navigate=useNavigate()
   return (
     <>

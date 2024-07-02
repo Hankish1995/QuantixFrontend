@@ -48,12 +48,12 @@ const handleGoogleLoginSuccess = (response) => {
       ,email:response.data.email}))
 
   }
-  console.log('Google login success:', response);
+ 
 };
 
 const handleGoogleLoginFailure = (error) => {
 toast.error(error)
-  console.error('Google login failure:', error);
+ 
 };
 
 

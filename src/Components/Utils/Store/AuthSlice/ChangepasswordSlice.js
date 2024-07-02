@@ -1,3 +1,5 @@
+
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState={
@@ -9,21 +11,30 @@ const initialState={
 }
 // add plan actions
 
-export const getAllPlanActions=createAsyncThunk("getAllPlanActions",async({currentPage,limit,searchPlan,sortOrder,fieldName},thunkAPI)=>{
+export const changePasswordActions=createAsyncThunk("changePasswordActions",async({id,password,newPassword,confirmPassword},thunkAPI)=>{
+
     try {
     const myHeaders = new Headers();
     const token = localStorage.getItem("token")
+   
     myHeaders.append("Authorization", `Bearer ${token}`);
-    
+    myHeaders.append("Content-Type", "application/json");
+    const raw = JSON.stringify({
+ 
+        "id":id,
+        "password":password,
+        "newPassword":newPassword,
+        "confirmPassword":confirmPassword
+      });
     const requestOptions = {
-      method: "GET",
+      method: "PUT",
       headers: myHeaders,
-      redirect: "follow"
+      redirect: "follow",
+      body:raw
     };
     
     
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/getAllPlans?page=
-        ${currentPage}&limit=${limit}&search=${searchPlan}&sortOrder=${sortOrder}&column=${fieldName}`, requestOptions)
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/changePassword`, requestOptions)
     if (!response.ok) {
         const errorMessage = await response.json();
         if (errorMessage) {
@@ -40,23 +51,23 @@ export const getAllPlanActions=createAsyncThunk("getAllPlanActions",async({curre
     })
 
 
-const getAllPlanSlice=createSlice({
-    name:"getAllPlanSlice",
+const changePasswordSlice=createSlice({
+    name:"changePasswordSlice",
     initialState:initialState,
     reducers: {
-        clear_getall_plan_slice : () => {
+       clear_changepassword_slice : () => {
             return initialState
         }
       },
     extraReducers:(builder)=>{
-    builder.addCase(getAllPlanActions.pending,(state)=>{
+    builder.addCase(changePasswordActions.pending,(state)=>{
      state.loading=true
-    }).addCase(getAllPlanActions.fulfilled,(state,action)=>{
+    }).addCase(changePasswordActions.fulfilled,(state,action)=>{
         state.loading=false
         state.isSuccess=true
         state.data=action.payload
     })
-    .addCase(getAllPlanActions.rejected,(state,action)=>{
+    .addCase(changePasswordActions.rejected,(state,action)=>{
         state.loading=false
         state.isSuccess=false
         state.isError=true
@@ -64,5 +75,5 @@ const getAllPlanSlice=createSlice({
     })
     }
 })
-export const {clear_getall_plan_slice}=getAllPlanSlice.actions
-export default getAllPlanSlice.reducer
+export const {clear_changepassword_slice}=changePasswordSlice.actions
+export default changePasswordSlice.reducer

@@ -127,7 +127,13 @@ padding:7px 20px;
     height: 400px;
     width: 400px;
 }
-
+td.plan_doesnotexist_heading {
+    font-size: 20px !important;
+}
+.up_down_arrow_outer{
+    display: flex;
+    flex-direction: column;
+}
 @media screen and (min-width:1900px) {
     .no_plan_img {
         height: 520px;
@@ -139,9 +145,10 @@ padding:7px 20px;
     .Plan_Details_heading {
         font-size: 22px;
     }
-    .plan_name_heading{
-    padding-left: 0px !important;
+    td.plan_doesnotexist_heading {
+        font-size: 22px !important;
     }
+  
   
     .table_plan thead tr th {
         padding: 10px 40px
@@ -153,7 +160,7 @@ padding:7px 20px;
         padding: 25px 40px;
     }
     .table_plan h6 {
-        font-size: 18px;
+        font-size: 22px;
     }
     .table_plan tr td:first-child {
         font-size: 20px ;
@@ -184,6 +191,9 @@ padding:7px 20px;
     }
     label#drop_file{
         padding: 20px;
+    }
+    td.plan_doesnotexist_heading {
+        font-size: 15px !important;
     }
     .table_plan tr td:first-child {
         font-size: 14px

@@ -3,7 +3,7 @@ import "./dashboard.css"
 import { FaRegTrashAlt } from "react-icons/fa";
 import left_right_icon from "../Images/left-right-icon.svg"
 import { BsThreeDotsVertical } from "react-icons/bs";
-import arrow_icon from "../Images/Arrow-top-down.svg"
+
 import { useDispatch, useSelector } from 'react-redux';
 import { clear_getall_plan_slice, getAllPlanActions } from '../Utils/Store/PlanSlice/GetAllPlanSlice';
 import { clear_delete_plan_slice, deletePlanActions, delete_plan_slice } from '../Utils/Store/PlanSlice/DeletePlanSlice';
@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router';
 import { capitalLiseString } from '../Utils/CommonUtils';
 import DeletePlanModal from '../Modal/DeletePlan';
 import no_plan_img from "../Images/noplan_img.svg"
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+
 const Dashboard = () => {
 
   const getAllPlansData = useSelector((store) => {return store.GET_ALL_PLAN_SLLICE})
@@ -23,6 +25,9 @@ const Dashboard = () => {
  const[currentPage,setCurrentPage]=useState(1)
  const[limit,setLimit]=useState(5)
  const[searchPlan,setSearchPlan]=useState("")
+ const[sortOrder,setSortOrder]=useState("desc")
+ const [fieldName,setFieldName] = useState("")
+
 
  const[showDeletePlanModal,setShowDeletePlanModal]=useState(false)
  const[id, setId]=useState()
@@ -33,7 +38,7 @@ const dispatch=useDispatch()
 const navigate=useNavigate()
 
 useEffect(()=>{
-  dispatch(getAllPlanActions({currentPage,limit,searchPlan}))
+  dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
   
   if(deletePlanData.isError==true){
     toast.error(deletePlanData?.error.message)
@@ -42,9 +47,9 @@ useEffect(()=>{
  if(deletePlanData.isSuccess===true){
     toast.success(deletePlanData.data.message)
     dispatch(clear_delete_plan_slice())
-    dispatch(getAllPlanActions({currentPage,limit,searchPlan}))
+    dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
   }
-},[deletePlanData,currentPage,limit,searchPlan])
+},[deletePlanData,currentPage,limit,searchPlan,sortOrder])
 
 
 
@@ -95,8 +100,8 @@ setId(id)
           <input    value={searchPlan} onChange={(e)=>{
             setSearchPlan(e.target.value);
             setInput(true)
-       
-          }}  type='text' className='form-control Search_plans_input' placeholder='Search plans name'/>
+        
+          }}  type='text' className='form-control Search_plans_input' placeholder='Search plans '/>
         
 
           </div>
@@ -104,7 +109,7 @@ setId(id)
             {input && searchPlan!="" ?  <button className='cmn_btn submit_plan_btn' onClick={()=>{
               setInput(false);
               setSearchPlan("")
-              dispatch(getAllPlanActions({currentPage,limit,searchPlan:""}))
+              dispatch(getAllPlanActions({currentPage,limit,searchPlan:"",sortOrder}))
             }}>Clear Search</button>:
             <button className='cmn_btn submit_plan_btn' onClick={submitPlanHandler}>Add Plans</button>}
           </div>
@@ -126,7 +131,12 @@ setId(id)
           
           <div className='d-flex align-items-center gap-4'>
              <h6> PLAN NAME</h6>
-                <img src={arrow_icon} alt='arrow_icon'/>
+             <div className='up_down_arrow_outer cursor-pointer'>
+             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("planName")}}/>
+             <IoIosArrowDown   onClick={()=>{setSortOrder("desc");setFieldName("planName")}}/>
+
+             </div>
+              
               </div>
            
           </th>
@@ -134,21 +144,30 @@ setId(id)
          
               <div className='d-flex align-items-center gap-4'>
              <h6 className=''> PLAN ADDRESS</h6>
+             <div className='up_down_arrow_outer cursor-pointer'>
+             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("planAddress")}}/>
+             <IoIosArrowDown  onClick={()=>{setSortOrder("desc");setFieldName("planAddress")}}/>
+
+             </div>
               </div>
             
           </th>
           <th>
          
               <div className='d-flex align-items-center gap-4'>
-                <img src={arrow_icon} alt='arrow_icon'/>
              <h6>STATUS</h6>
+             <div className='up_down_arrow_outer cursor-pointer'>
+             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("status")}}/>
+             <IoIosArrowDown onClick={()=>{setSortOrder("desc");setFieldName("status")}}/>
+
+             </div>
               </div>
            
           </th>
           <th>
        
               <div className='d-flex align-items-center gap-4 justify-content-end'>
-                <img src={arrow_icon} alt='arrow_icon'/>
+      
              <h6> ACTIONS</h6>
               </div>
           
@@ -169,7 +188,7 @@ setId(id)
       input && getAllPlansData?.data?.plans?.length==0?
 
     <tr>
- <td colSpan="4" style={{ textAlign: 'center' }}>
+ <td colSpan="4" className='plan_doesnotexist_heading' style={{ textAlign: 'center' }}>
       The plan you are looking for does not exist
     </td>
     </tr>
@@ -180,12 +199,12 @@ setId(id)
               <tr key={i}>
               <td>{capitalLiseString(data.planName)}</td>
               <td>{data.planAddress}</td>
-              <td><span className={`cmn_status_text ${data.status===false? "inactive_btn":"active_btn"}`}>{data.status===false? "Inactive":"Active"}</span></td>
+              <td><span className={`cmn_status_text ${data.status==="active"? " active_btn":"inactive_btn"}`}>{data.status===false? "Inactive":"Active"}</span></td>
               <td>
-                <div className='d-flex gap-3 justify-content-end actions_wrapper'>
-                <img src={left_right_icon} alt='left_right_icon' height="20px" width="20px"/>
+                <div className='d-flex gap-3 justify-content-end actions_wrapper '>
+                <img className='cursor-pointer' onClick={() => {navigate("/report",{state:{planId:data?._id,isNotFound:false}})}} src={left_right_icon} alt='left_right_icon' height="20px" width="20px"/>
                 <FaRegTrashAlt onClick={()=>{showDeletePlanModalHandler(data._id)}} className=' trash-icon'/>
-                <BsThreeDotsVertical />
+                {/* <BsThreeDotsVertical /> */}
   
                 </div>
               </td>

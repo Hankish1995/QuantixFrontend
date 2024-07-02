@@ -22,7 +22,16 @@
 .cancel_button:hover{
     background-color: white !important;
 }
-
+.modal-footer {
+    border-top: unset;
+}
+.chanage_pass_btn_outer button {
+    padding: 6px 15px;
+    min-width: 98px;
+}
+.chanage_pass_btn_outer .cancel_button{
+    border-radius: 6px;
+}
  @media screen and (max-width:767px) {
     .confirm_delete_text {
         font-size: 16px !important;
