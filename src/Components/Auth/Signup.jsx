@@ -90,15 +90,15 @@ const Signup = () => {
                ) : null}
             </div>
 
-            <div className="d-flex gap-2 align-items-center mt-3 mb-3">
+            {/* <div className="d-flex gap-2 align-items-center mt-3 mb-3">
               <input type="checkbox" />
               <h6 className="cmn_small_heading mb-0">
                 I agree to{" "}
                 <span className="span_text">privacy policy & terms</span>
               </h6>
-            </div>
+            </div> */}
             
-            <Button isLoading={signUpData?.isLoading} btntext={"Sign up"} className={"cmn_btn signin_btn"} type={"submit"}/>
+            <Button isLoading={signUpData?.isLoading} btntext={"Sign up"} className={"cmn_btn signin_btn mt-4"} type={"submit"}/>
           
           </form>
           <h3 className="cmn_small_heading text-center mt-3">

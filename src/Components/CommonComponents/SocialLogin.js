@@ -56,20 +56,27 @@ toast.error(error)
  
 };
 
+const handleSuccess=(response)=>{
+ 
+    setFacebookLoginData(response)
+    if(response){
+      dispatch(socialLoginActions({providerName:response.provider,providerId:response.data.userID,email:response.data.email}))
+    }
 
+}
+
+const handleReject=(error)=>{
+  toast.error(error)
+
+}
   return (
     <div className='social_login_wrapper'>
         <div className='social_login_content'>
             
               <LoginSocialFacebook  
               appId={process.env.REACT_APP_FACEBOOK_APP_ID} 
-              onResolve={((response)=>{
-              setFacebookLoginData(response)
-              if(response){
-                dispatch(socialLoginActions({providerName:response.provider,providerId:response.data.userID,email:response.data.email}))
-              }
-            })}
-              onReject={((error)=>{console.log(error,"error while login")})}
+              onResolve={handleSuccess}
+              onReject={handleReject}
               scope="email"
            
               >
