@@ -132,8 +132,17 @@ setId(id)
           <div className='d-flex align-items-center gap-4'>
              <h6> PLAN NAME</h6>
              <div className='up_down_arrow_outer cursor-pointer'>
-             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("PLAN NAME")}}/>
-             <IoIosArrowDown   onClick={()=>{setSortOrder("desc");setFieldName("PLAN NAME")}}/>
+             <IoIosArrowUp  title='Ascending order' onClick={()=>{
+              setSortOrder("asc");setFieldName("PLAN NAME");
+              dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+
+            } }
+              
+              />
+             <IoIosArrowDown  title='Decending order'  onClick={()=>{
+              setSortOrder("desc");setFieldName("PLAN NAME");
+              dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+              }}/>
 
              </div>
               
@@ -145,8 +154,12 @@ setId(id)
               <div className='d-flex align-items-center gap-4'>
              <h6 className=''> PLAN ADDRESS</h6>
              <div className='up_down_arrow_outer cursor-pointer'>
-             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("PLAN ADDRESS")}}/>
-             <IoIosArrowDown  onClick={()=>{setSortOrder("desc");setFieldName("PLAN ADDRESS")}}/>
+             <IoIosArrowUp title='Ascending order' onClick={()=>{setSortOrder("asc");setFieldName("PLAN ADDRESS");
+                 dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+             }}/>
+             <IoIosArrowDown title='Decending order' onClick={()=>{setSortOrder("desc");setFieldName("PLAN ADDRESS");
+               dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+             }}/>
 
              </div>
               </div>
@@ -157,8 +170,13 @@ setId(id)
               <div className='d-flex align-items-center gap-4'>
              <h6>STATUS</h6>
              <div className='up_down_arrow_outer cursor-pointer'>
-             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("STATUS")}}/>
-             <IoIosArrowDown onClick={()=>{setSortOrder("desc");setFieldName("STATUS")}}/>
+             <IoIosArrowUp title='Ascending order' onClick={()=>{setSortOrder("asc");setFieldName("STATUS");
+              dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+
+             }}/>
+             <IoIosArrowDown  title='Decending order' onClick={()=>{setSortOrder("desc");setFieldName("STATUS");
+               dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+             }}/>
 
              </div>
               </div>
@@ -202,8 +220,8 @@ setId(id)
               <td><span className={`cmn_status_text ${data.status==="active"? " active_btn":"inactive_btn"}`}>{data.status===false? "Inactive":"Active"}</span></td>
               <td>
                 <div className='d-flex gap-3 justify-content-end actions_wrapper '>
-                <img className='cursor-pointer' onClick={() => {navigate("/report",{state:{planId:data?._id,isNotFound:false}})}} src={left_right_icon} alt='left_right_icon' height="20px" width="20px"/>
-                <FaRegTrashAlt onClick={()=>{showDeletePlanModalHandler(data._id)}} className=' trash-icon'/>
+                <img title='View plan' className='cursor-pointer' onClick={() => {navigate("/report",{state:{planId:data?._id,isNotFound:false}})}} src={left_right_icon} alt='left_right_icon' height="20px" width="20px"/>
+                <FaRegTrashAlt title='Delete Plan' onClick={()=>{showDeletePlanModalHandler(data._id)}} className=' trash-icon'/>
                 {/* <BsThreeDotsVertical /> */}
   
                 </div>
