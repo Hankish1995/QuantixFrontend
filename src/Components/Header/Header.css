@@ -31,6 +31,10 @@
     color: white;
     font-size: 13px;
 }
+.profile_dropdown_wrapper #dropdown-basic:focus-visible {
+    outline: unset !important;
+    box-shadow: unset !important;
+}
 .navbar-toggler:focus{
     box-shadow: unset !important;
 }
