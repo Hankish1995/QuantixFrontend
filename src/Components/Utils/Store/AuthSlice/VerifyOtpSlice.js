@@ -46,8 +46,13 @@ const verify_otp_slice=createSlice({
     initialState:initialState,
     
     reducers:{
-        clear_verifyotp_slice:()=>{
-           return initialState
+        clear_verifyotp_slice:(state)=>{
+            state.data = {}
+            state.isError = false
+            state.isSuccess = false
+            state.isLoading = false
+            state.error = null
+            return state
         }
     },
     extraReducers:(builder)=>{

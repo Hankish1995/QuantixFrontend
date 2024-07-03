@@ -36,13 +36,13 @@ const navigate =useNavigate()
 useEffect(()=>{
 if(forgotPasswordData.isError){
   toast.error(forgotPasswordData.error.message)
-  dispatch(clear_forgotpassword_slice)
+  dispatch(clear_forgotpassword_slice())
 }
 else if(forgotPasswordData.isSuccess){
 
   toast.success(forgotPasswordData.data.message)
-  navigate("/verify-otp")
-  dispatch(clear_forgotpassword_slice)
+  navigate("/verify-otp",{state : {email : formik.values.email}})
+  dispatch(clear_forgotpassword_slice())
 }
 },[forgotPasswordData])
   return (

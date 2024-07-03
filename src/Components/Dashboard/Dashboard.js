@@ -109,7 +109,7 @@ setId(id)
             {input && searchPlan!="" ?  <button className='cmn_btn submit_plan_btn' onClick={()=>{
               setInput(false);
               setSearchPlan("")
-              dispatch(getAllPlanActions({currentPage,limit,searchPlan:"",sortOrder}))
+              dispatch(getAllPlanActions({currentPage,limit,searchPlan:"",sortOrder,fieldName}))
             }}>Clear Search</button>:
             <button className='cmn_btn submit_plan_btn' onClick={submitPlanHandler}>Add Plans</button>}
           </div>
