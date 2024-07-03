@@ -8,6 +8,8 @@ import socialLogin_slice  from './AuthSlice/SocialFacebookLogin'
 import AddPlanSlice from './PlanSlice/AddPlanSlice'
 import getAllPlanActions  from './PlanSlice/GetAllPlanSlice'
 import DeletePlanSlice from './PlanSlice/DeletePlanSlice'
+import get_plan_details_estimates from './PlanSlice/get_plan_details_slice'
+import ChangepasswordSlice from './AuthSlice/ChangepasswordSlice'
 
 
 const store = configureStore({
@@ -21,6 +23,9 @@ const store = configureStore({
     ADD_PLAN_SLICE:AddPlanSlice,
     GET_ALL_PLAN_SLLICE:getAllPlanActions,
     DELETE_PLAN_SLICE:DeletePlanSlice,
+    PLAN_ESTIMATES : get_plan_details_estimates,
+    CHANGE_PASSWORD_SLICE : ChangepasswordSlice,
+    
     
   },
 })

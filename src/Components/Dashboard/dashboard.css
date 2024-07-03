@@ -22,7 +22,7 @@
     border-radius: 4px;
     margin-left: 31px;
     font-size: 14px;
-  
+     font-weight: 600;
 }
 
 .table_plan td{ 
@@ -51,15 +51,18 @@
     font-weight: 600;
     font-size: 16px;
     padding: 5px 20px;
-
+    vertical-align: middle;
   }
   .Search_plans_input::placeholder{
     color: #A8AAAE;
   }
 .dashboardmenu_container{
-    margin-bottom: 20px;
     height: 100%;
     min-height: 100vh;
+}
+.dashboard_container{
+    min-height: 100vh;
+    height: 100%;
 }
 .actions_wrapper svg{
     color:  #4B465C;
@@ -110,21 +113,75 @@ button.review_btn {
     background: white;
 }
 .submit-Plan_btn{
-padding:5px 20px;
+padding:7px 20px;
 }
 .review_btn_outer {
-    margin-top: 26px;
-    padding: 0px 20px;
+    padding:20px;
 }
 .Plan_Details_heading {
     color: #4B465C;
     font-size: 18px;
     font-weight: 600;
 }
-
-@media screen and (max-width:991px){
-  
+.no_plan_img{
+    height: 400px;
+    width: 400px;
 }
+td.plan_doesnotexist_heading {
+    font-size: 20px !important;
+}
+.up_down_arrow_outer{
+    display: flex;
+    flex-direction: column;
+}
+@media screen and (min-width:1900px) {
+    .no_plan_img {
+        height: 520px;
+        width: 520px;
+    }
+}
+@media screen and (min-width:1536px){
+   
+    .Plan_Details_heading {
+        font-size: 22px;
+    }
+    td.plan_doesnotexist_heading {
+        font-size: 22px !important;
+    }
+  
+  
+    .table_plan thead tr th {
+        padding: 10px 40px
+    }
+    .table_plan td{
+        padding: 20px 40px !important;
+    }
+    .select_plan_outer {
+        padding: 25px 40px;
+    }
+    .table_plan h6 {
+        font-size: 22px;
+    }
+    .table_plan tr td:first-child {
+        font-size: 20px ;
+      }
+      .table_plan tr td:nth-child(2){
+        font-size: 20px ;
+      }
+      .cmn_status_text {
+      font-size: 20px;
+    }
+    .Search_plans_input{
+      font-size: 20px;
+    }
+    .submit_plan_btn {
+      width: 200px;
+      height: 44px;
+      font-size: 20px;
+    }
+}
+
+
 @media screen and (max-width:767px){
     .search_plan_wrapper.d-flex.gap-3 {
         margin-top: 20px;
@@ -135,6 +192,9 @@ padding:5px 20px;
     label#drop_file{
         padding: 20px;
     }
+    td.plan_doesnotexist_heading {
+        font-size: 15px !important;
+    }
     .table_plan tr td:first-child {
         font-size: 14px
     }
@@ -144,5 +204,24 @@ padding:5px 20px;
     }
     .submit_plan_btn {
         width: 134px;
+        font-size: 14px;
+    }
+    .submit-Plan_btn {
+        font-size: 14px;
+    }
+    button.review_btn {
+        font-size: 14px;
+    }
+    .Plan_Details_heading {
+        font-size: 16px;
+    }
+    .plan_tabular_data{
+        scrollbar-width: thin;
+    }
+    img.no_plan_img {
+        width: 100%;
+    }
+    .drop_file_text.mt-3 {
+        font-size: 16px !important;
     }
 }

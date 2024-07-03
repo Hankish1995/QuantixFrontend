@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./style.css"
 import heart_logo from "../Images/vuexy-logo.svg"
 import { Link, useNavigate } from 'react-router-dom'
@@ -12,26 +12,57 @@ import { UseLogin } from '../Utils/customHooks/AuthHooks/AuthHooks'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { clear_login_slice } from '../Utils/Store/AuthSlice/LoginSlice'
+import TwitterLogin from "../CommonComponents/TwitterLogin"
 
 
 const Login = () => {
 
 const loginaction=UseLogin()
+const[checked,setChecked]=useState(false)
 
 const loginData=useSelector((state)=>{return state.LOGIN_SLICE})
 
 const navigate=useNavigate()
 
+
+const token=localStorage.getItem("token")
+console.log(token,"token")
+
+  useEffect(()=>{
+    if(token){
+   navigate("/dashboard")
+    }else{
+      navigate("/")
+    }
+  },[])
+
+useEffect(() => {
+  const rememberedEmail = localStorage.getItem('email');
+  const rememberedPassword = localStorage.getItem('password');
+  if (rememberedEmail && rememberedPassword) {
+    formik.setValues({ email: rememberedEmail, password: rememberedPassword })
+    setChecked(true);
+  }
+}, []);
+
+
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
+      password: ""
      
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
+      if(checked){
+        localStorage.setItem("password",values.password)
+        localStorage.setItem("email",values.email)
+        
+      }else{
+        localStorage.removeItem("password")
+        localStorage.removeItem("email")
+      }
       loginaction(values.email,values.password)
-
       
     },
   });
@@ -47,6 +78,8 @@ const navigate=useNavigate()
       localStorage.setItem("token",loginData?.data?.userObj?.token  )
       localStorage.setItem("username",loginData?.data?.userObj?.username)
       localStorage.setItem("email",loginData?.data?.userObj?.email)
+      localStorage.setItem("user_id",loginData?.data?.userObj?._id)
+   
       
       dispatch(clear_login_slice())
       navigate("/dashboard")
@@ -86,7 +119,7 @@ const navigate=useNavigate()
    </div>
 
    <div className='d-flex gap-2 align-items-center mt-3 mb-3'>
-    <input type='checkbox'/>
+    <input type='checkbox'checked={checked} onChange={(e)=>setChecked(e.target.checked)}/>
     <h6 className='cmn_small_heading mb-0'>Remember Me</h6>
    </div>
    
@@ -100,6 +133,7 @@ const navigate=useNavigate()
 
 
 {/* social login  */}
+{/* <TwitterLogin/> */}
 <SocialLogin/>
     </div>
     </div>

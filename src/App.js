@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const location = useLocation();
-  const hideHeaderRoutes = ["/", "/signup","/forgot-password","/reset-password","/verify-otp"];
+  const hideHeaderRoutes = ["/", "/signup","/forgot-password","/reset-password","/verify-otp","/error"];
 
   return(
 

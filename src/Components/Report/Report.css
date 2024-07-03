@@ -2,6 +2,8 @@
     box-shadow: 2px 3px 10px #e4dede;
     border-radius: 6px;
     padding: 24px;
+    min-height: 100%;
+    /* height: calc(100vh - 111px); */
 }
 .zone_outer {
     display: flex;
@@ -12,6 +14,11 @@
     padding: 24px;
     width: 332px;
     border-radius: 6px;
+}
+.image_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .zone_inner_content {
     display: flex;
@@ -37,12 +44,12 @@
 }
 .legend_outer{
     border-radius: 6px;
-    border: 1px solid #DBDADE;
+
 
 }
-.legend_list  li{
+/* .legend_list  li{
     padding: 20px 20px 0px;
-}
+} */
 .legend_list .zone_content_wrapper{
     width: 100%;
 }
@@ -75,21 +82,35 @@
     font-family: "Public Sans", sans-serif;
     font-weight: 500;
 }
-.legend_heading{
-    color : #4B465C;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 21px;
-    font-family: "Public Sans", sans-serif;
-}
-.report_diagram{
+.report_response_outer{
     height: 500px;
-    width: 500px;
+    overflow-y: scroll;
+    
+}
+
+.report_diagram{
+    height: 440px;
+    width: 440px;
+    object-fit: contain;
+}
+.loading_container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .report_outer .dashboard_plan_heading {
     padding-bottom: 0px;
 }
+.plan_name_heading{
+    font-size: 24px;
+    padding-left: 20px;
+}
+
 @media screen and (max-width:991px){
+    .report_content_outer {
+        margin-top: 25px;
+    }
     .report_diagram{
         width: 100%;
         height: 100%;
@@ -116,13 +137,21 @@
     .zone_content_wrapper {
         padding: 18px;
     }
-    /* .legend_outer {
-        padding: 16px;
-    } */
-    .report_content_outer {
-        padding: 16px;
+    .report_image_outer{
+        margin-top: 20px ;
     }
-    .report_zone_heading {
-        font-size: 13px;
-    }
- }
+    .badrequest_img{
+    object-fit: contain;
+    height: 227px;
+    width: 100%;
+}
+.report_diagram{
+    width: 100%;
+  } 
+.report_content_outer {
+padding: 16px;
+}
+.report_zone_heading {
+font-size: 13px;
+}
+}

@@ -82,7 +82,7 @@ const Signup = () => {
             <div className="form-group">
               <div className="password_outer d-flex">
                 <label>Password</label>
-                <h6 className="span_text"><Link to={"/forgot-password"}>Forgot Password?</Link></h6>
+              
               </div>
               <input value={formik.values.password}  type="password" className="form-control" name="password" onChange={formik.handleChange} onBlur={formik.handleBlur}/>
               {formik.touched.password && formik.errors.password ? (

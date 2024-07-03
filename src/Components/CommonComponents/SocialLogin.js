@@ -48,12 +48,12 @@ const handleGoogleLoginSuccess = (response) => {
       ,email:response.data.email}))
 
   }
-  console.log('Google login success:', response);
+ 
 };
 
 const handleGoogleLoginFailure = (error) => {
 toast.error(error)
-  console.error('Google login failure:', error);
+ 
 };
 
 
@@ -84,7 +84,7 @@ toast.error(error)
               </LoginSocialFacebook>
            
             {/* twitter login */}
-            <div className=''>
+            {/* <div className=''>
               <LoginSocialTwitter 
               
 
@@ -96,6 +96,7 @@ toast.error(error)
               })}
                 onReject={((error)=>{console.log(error,"error while login with twitter")})}
                 scope="email"
+                state="756f9825-392c-4c71-b33a-b616a4333b5"
                 redirect_uri={process.env.REACT_APP_VITE_APP_OAUTH2_REDIRECT_URL} 
               >
 
@@ -109,7 +110,7 @@ toast.error(error)
               </TwitterLoginButton>
               </LoginSocialTwitter>
            
-            </div>
+            </div> */}
 
             {/* google login  */}
         

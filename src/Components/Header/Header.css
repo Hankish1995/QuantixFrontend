@@ -36,9 +36,62 @@
 }
 nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
     background: white !important;
+    padding: 0px;
 }
+.navbar-toggler-icon{
+    height: 22px;
+    width: 22px;
+}
+.logout_btn {
+    padding: 7px 17px;
+    font-size: 15px;
+}
+.profile_dropdown_outer{
+    background: transparent !important;
+    border: none !important;
+    padding: 0px;
 
+}
+.ai_logo{
+    height: 69px;
+    width: 106px;
 
+}
+.profile_item_wrapper{
+    cursor: pointer;
+    padding: 5px 15px !important;
+    width: 198px;
+}
+ul.profile_item_wrapper li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0px;
+    font-size: 16px;
+}
+ul.profile_item_wrapper li svg{
+    font-size: 19px;
+}
+ul.profile_item_wrapper li:hover{
+    color:#7367F0 !important
+}
+ul.profile_item_wrapper li:last-child {
+    border-bottom: unset;
+}
+.header_outer_wrapper{
+    cursor: pointer;
+}
+.logout_text{
+    font-size: 18px ;
+    margin-bottom: 0px;
+}
+.profile_dropdown_wrapper .dropdown-menu.show {
+    padding: 0px;
+}
+ @media screen and (min-width:992px){
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+        left: auto !important;
+        right: 1rem !important;
+    }
+ }
 @media screen and (max-width:991px){
     .navbar-nav {
     align-items: start !important;
@@ -46,3 +99,8 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
     }
     
 }
+ @media screen and (max-width:767px){
+    .logout_text {
+        font-size: 15px;
+    }
+ }
