@@ -23,6 +23,19 @@ const[checked,setChecked]=useState(false)
 const loginData=useSelector((state)=>{return state.LOGIN_SLICE})
 
 const navigate=useNavigate()
+
+
+const token=localStorage.getItem("token")
+console.log(token,"token")
+
+  useEffect(()=>{
+    if(token){
+   navigate("/dashboard")
+    }else{
+      navigate("/")
+    }
+  },[])
+
 useEffect(() => {
   const rememberedEmail = localStorage.getItem('email');
   const rememberedPassword = localStorage.getItem('password');

@@ -182,7 +182,7 @@ const Report = () => {
               <h3 className="cmn_heading_style dashboard_plan_heading cursor-pointer" onClick={()=>{navigate("/dashboard")}}>
                 <span className="submit_plan_heading">Dashboard</span>/Report
               </h3>
-              <h4 className="cmn_heading_style ps-4 plan_name_heading">
+              <h4 className="cmn_heading_style plan_name_heading">
                 {" "}
                 {(planName || plan_estimates?.data?.data?.planName) && capitalLiseString(planName ? planName : plan_estimates?.data?.data?.planName)}
               </h4>

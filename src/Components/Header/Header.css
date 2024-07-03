@@ -36,6 +36,7 @@
 }
 nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
     background: white !important;
+    padding: 0px;
 }
 .navbar-toggler-icon{
     height: 22px;
@@ -52,8 +53,9 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
 
 }
 .ai_logo{
-    height: 57px;
-    width: 94px;
+    height: 69px;
+    width: 106px;
+
 }
 .profile_item_wrapper{
     cursor: pointer;

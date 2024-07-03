@@ -132,8 +132,8 @@ setId(id)
           <div className='d-flex align-items-center gap-4'>
              <h6> PLAN NAME</h6>
              <div className='up_down_arrow_outer cursor-pointer'>
-             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("planName")}}/>
-             <IoIosArrowDown   onClick={()=>{setSortOrder("desc");setFieldName("planName")}}/>
+             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("PLAN NAME")}}/>
+             <IoIosArrowDown   onClick={()=>{setSortOrder("desc");setFieldName("PLAN NAME")}}/>
 
              </div>
               
@@ -145,8 +145,8 @@ setId(id)
               <div className='d-flex align-items-center gap-4'>
              <h6 className=''> PLAN ADDRESS</h6>
              <div className='up_down_arrow_outer cursor-pointer'>
-             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("planAddress")}}/>
-             <IoIosArrowDown  onClick={()=>{setSortOrder("desc");setFieldName("planAddress")}}/>
+             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("PLAN ADDRESS")}}/>
+             <IoIosArrowDown  onClick={()=>{setSortOrder("desc");setFieldName("PLAN ADDRESS")}}/>
 
              </div>
               </div>
@@ -157,8 +157,8 @@ setId(id)
               <div className='d-flex align-items-center gap-4'>
              <h6>STATUS</h6>
              <div className='up_down_arrow_outer cursor-pointer'>
-             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("status")}}/>
-             <IoIosArrowDown onClick={()=>{setSortOrder("desc");setFieldName("status")}}/>
+             <IoIosArrowUp onClick={()=>{setSortOrder("asc");setFieldName("STATUS")}}/>
+             <IoIosArrowDown onClick={()=>{setSortOrder("desc");setFieldName("STATUS")}}/>
 
              </div>
               </div>
