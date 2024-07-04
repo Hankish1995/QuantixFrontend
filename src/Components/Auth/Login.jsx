@@ -105,7 +105,7 @@ useEffect(() => {
    <form onSubmit={formik.handleSubmit}>
    <div className='form-group'>
     <label>Email or Username</label>
-  <input name='email' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} type='email' className='form-control'/>
+  <input name='email' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} type='text' className='form-control'/>
    {formik.touched.email && formik.errors.email ? <p className="error">{formik.errors.email}</p>:""}
    </div>
 
