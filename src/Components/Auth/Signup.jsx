@@ -107,7 +107,7 @@ const Signup = () => {
               <Link to="/">sign in instead</Link>
             </span>
           </h3>
-          <h5 className="or_text">Or</h5>
+          {/* <h5 className="or_text">Or</h5> */}
 
           {/* social login */}
           {/* <SocialLogin/> */}

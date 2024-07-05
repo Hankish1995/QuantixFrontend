@@ -129,7 +129,7 @@ useEffect(() => {
    </form>
 
    <h3 className='cmn_small_heading text-center mt-3'>New on our platform? <span className='span_text'><Link to="/signup">Create an account</Link></span></h3>
-   <h5 className='or_text'>Or</h5>
+   {/* <h5 className='or_text'>Or</h5> */}
 
 
 {/* social login  */}
