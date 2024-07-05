@@ -99,12 +99,25 @@ ul.profile_item_wrapper li:last-child {
 @media screen and (max-width:991px){
     .navbar-nav {
     align-items: start !important;
-    margin: 20px 0px;
+    margin: 15px 0px;
+    }
+    .navbar_outer div#basic-navbar-nav {
+        margin-left: 2rem;
+    }
+    .ai_logo {
+        height: 66px;
+        width: 100px;
     }
     
 }
  @media screen and (max-width:767px){
     .logout_text {
         font-size: 15px;
+    }
+    .profile_item_wrapper{
+        width: 185px;
+    }
+    ul.profile_item_wrapper li {
+        font-size: 14px;
     }
  }
