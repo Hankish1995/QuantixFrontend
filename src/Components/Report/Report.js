@@ -141,7 +141,7 @@ const Report = () => {
 
   const formatContent = (content) => {
     // Clean up unwanted characters
-    content = content.replace(/["`,./[\]#\\]/g, "");
+    content = content.replace(/["`/[\]#\\]/g, "");
 
     content = content.replace(/stream started/gi, "");
     content = content.replace(/stream ended/gi, "");

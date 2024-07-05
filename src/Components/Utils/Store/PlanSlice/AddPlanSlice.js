@@ -41,18 +41,11 @@ export const addPlanActions = createAsyncThunk(
         throw new Error(errorMessage.message);
       }
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder("utf-8");
+      const responseData = await response.text(); // Read entire response as text
+      console.log("data---",responseData)
+      // Dispatch final data or success state
+      dispatch(updateStreamData(responseData));
 
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        const decodedValue = decoder.decode(value, { stream: true });
-        // Dispatch partial data as it streams in
-        dispatch(updateStreamData(decodedValue));
-      }
-
-      // Return final success state or data
       return "Streaming Completed";
     } catch (error) {
       return rejectWithValue(error.message);
@@ -67,7 +60,7 @@ const addPlanSlice = createSlice({
   reducers: {
     clear_add_plan_slice: () => initialState,
     updateStreamData: (state, action) => {
-      state.data += action.payload; // Append new streamed data to existing data
+      state.data = action.payload; // Update state with the final streamed data
       state.loading = false;
       state.isSuccess = true;
     },
