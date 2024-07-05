@@ -110,7 +110,7 @@ const Signup = () => {
           <h5 className="or_text">Or</h5>
 
           {/* social login */}
-          <SocialLogin/>
+          {/* <SocialLogin/> */}
         </div>
       </div>
       <SquareImg/>

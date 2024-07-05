@@ -134,7 +134,7 @@ useEffect(() => {
 
 {/* social login  */}
 {/* <TwitterLogin/> */}
-<SocialLogin/>
+{/* <SocialLogin/> */}
     </div>
     </div>
   <SquareImg/>
