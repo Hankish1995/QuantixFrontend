@@ -27,6 +27,8 @@ const Dashboard = () => {
  const[searchPlan,setSearchPlan]=useState("")
  const[sortOrder,setSortOrder]=useState("desc")
  const [fieldName,setFieldName] = useState("")
+ const [triggerDispatch, setTriggerDispatch] = useState(false);
+
 
 
  const[showDeletePlanModal,setShowDeletePlanModal]=useState(false)
@@ -39,7 +41,11 @@ const navigate=useNavigate()
 
 useEffect(()=>{
   dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
-  
+
+  if (triggerDispatch) {
+    dispatch(getAllPlanActions({ currentPage, limit, searchPlan, sortOrder, fieldName }));
+    setTriggerDispatch(false);
+  }
   if(deletePlanData.isError==true){
     toast.error(deletePlanData?.error.message)
     dispatch(clear_delete_plan_slice())
@@ -49,7 +55,9 @@ useEffect(()=>{
     dispatch(clear_delete_plan_slice())
     dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
   }
-},[deletePlanData,currentPage,limit,searchPlan,sortOrder])
+
+
+},[deletePlanData,currentPage,limit,searchPlan,sortOrder,triggerDispatch])
 
 
 
@@ -134,14 +142,14 @@ setId(id)
              <div className='up_down_arrow_outer cursor-pointer'>
              <IoIosArrowUp  title='Ascending order' onClick={()=>{
               setSortOrder("asc");setFieldName("PLAN NAME");
-              dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+              setTriggerDispatch(true)
 
-            } }
+            }}
               
               />
              <IoIosArrowDown  title='Decending order'  onClick={()=>{
               setSortOrder("desc");setFieldName("PLAN NAME");
-              dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+              setTriggerDispatch(true)
               }}/>
 
              </div>
@@ -155,10 +163,10 @@ setId(id)
              <h6 className=''> PLAN ADDRESS</h6>
              <div className='up_down_arrow_outer cursor-pointer'>
              <IoIosArrowUp title='Ascending order' onClick={()=>{setSortOrder("asc");setFieldName("PLAN ADDRESS");
-                 dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+             setTriggerDispatch(true)
              }}/>
              <IoIosArrowDown title='Decending order' onClick={()=>{setSortOrder("desc");setFieldName("PLAN ADDRESS");
-               dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+              setTriggerDispatch(true)
              }}/>
 
              </div>
@@ -171,11 +179,11 @@ setId(id)
              <h6>STATUS</h6>
              <div className='up_down_arrow_outer cursor-pointer'>
              <IoIosArrowUp title='Ascending order' onClick={()=>{setSortOrder("asc");setFieldName("STATUS");
-              dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+              setTriggerDispatch(true)
 
              }}/>
              <IoIosArrowDown  title='Decending order' onClick={()=>{setSortOrder("desc");setFieldName("STATUS");
-               dispatch(getAllPlanActions({currentPage,limit,searchPlan,sortOrder,fieldName}))
+             setTriggerDispatch(true)
              }}/>
 
              </div>

@@ -26,8 +26,8 @@ const AddPlan = () => {
     e.stopPropagation();
 
     const droppedFiles = Array.from(e.dataTransfer.files);
-    const imageUrl=URL.createObjectURL(droppedFiles[0])
-    setImageUrl(imageUrl)
+    const fileUrl=URL.createObjectURL(droppedFiles[0])
+    setImageUrl(fileUrl)
     setFiles(droppedFiles);
   };
 
@@ -58,25 +58,36 @@ const AddPlan = () => {
 
     const selectedFiles = Array.from(e.target.files);
     const selectedFile = e.target.files[0];
-    const validTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-    const validExtensions = ['png', 'jpg', 'jpeg'];
+    const validTypes = ['image/png', 'image/jpg', 'image/jpeg',"image/gif","image/webp"];
+    const validExtensions = ['png', 'jpg', 'jpeg','gif','webp'];
   
-    if (selectedFile) {
-      const fileType = selectedFile.type;
-      const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
-  
-      if (validTypes.includes(fileType) && validExtensions.includes(fileExtension)) {
-        setFiles(selectedFiles);
-        const imageUrl = URL.createObjectURL(selectedFiles[0]);
-        setImageUrl(imageUrl);
-      } else {
-        toast.error('This file format not allowed. You can only add images having extensions :jpeg,png,jpg ');
-        setImageUrl('');
-      }
-    } else {
-      toast.error('No file selected');
+    // if ( selectedFile?.type === 'application/pdf') {
+    //   const fileURL = URL.createObjectURL(selectedFile);
+    //   setFiles(selectedFiles);
+    //   setPdfFile(fileURL);
+    // }
+   if ( selectedFile){
+      
+      setFiles(selectedFiles);
+      const fileUrl = URL.createObjectURL(selectedFiles[0]);
+      setImageUrl(fileUrl);
+    } else{
+    
       setImageUrl('');
+      // toast.error('This file format not allowed. You can only add images having extensions :jpeg,png,jpg ');
+
     }
+
+    // if (selectedFile) {
+    //   const fileType = selectedFile.type;
+    //   const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
+  
+      // if (validTypes.includes(fileType) && validExtensions.includes(fileExtension)) {
+    
+    // } else {
+    //   toast.error('No file selected');
+    //   setImageUrl('');
+    // }
   };
   
 
@@ -189,7 +200,7 @@ const AddPlan = () => {
                   </h3>
 
                 ))}
-                <img src={imageUrl} height={"200px"} width={"200px"}/>
+               {files[0]?.type==="application/pdf"? "": <img src={imageUrl} height={"200px"} width={"200px"}/>} 
               </div>
             ) : (
               <label

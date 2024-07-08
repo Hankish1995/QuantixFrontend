@@ -94,7 +94,7 @@
     font-size: 14px;
 
   }
-@media screen and (min-width:1920px){
+@media screen and (min-width:1500px){
     .login_container{
         height: 100vh;
     }
@@ -110,6 +110,11 @@ font-size: 18px;
     font-size: 20px;
 }
 }
+ @media screen and (max-width:1280px) {
+    .signin_btn{
+        padding: 7px 20px;
+    }
+ }
   @media screen and (max-width:767px){
     .login_wrapper{
         width: 100%;

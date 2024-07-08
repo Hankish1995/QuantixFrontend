@@ -122,9 +122,18 @@ input:focus-visible {
 .cursor-pointer{
   cursor: pointer;
 }
+.ai_logo{
+  height: 69px;
+  width: 106px;
+
+}
+
+.plan_ai_detector_heading{
+  transform: translate(-32px, 3px);
+}
 @media screen and (min-width:1536px){
 
-
+ 
   .cmn_heading_style{
     font-size: 25px !important;
   }
@@ -135,6 +144,12 @@ input:focus-visible {
  
 
 }
+ @media screen and (min-width:1440px) {
+  .ai_logo {
+    height: 90px;
+    width: 126px;
+}
+ }
 @media screen and (max-width:1439px){
  
   .large_font{
@@ -143,17 +158,19 @@ input:focus-visible {
 }
  @media screen and (max-width:1280px){
   .cmn_heading_style {
-    font-size: 18px !important;
+    font-size: 17px !important;
 }
  }
 
  
 @media screen and (max-width:991px){
-  .cmn_heading_style {
-    font-size: 18px !important;
-  }
+ 
   .dashboard_plan_heading {
     padding: 17px
+}
+.ai_logo {
+  height: 66px;
+  width: 100px;
 }
 }
 

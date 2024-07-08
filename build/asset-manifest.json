@@ -1,28 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.99423c34.css",
-    "main.js": "/static/js/main.c36f676f.js",
+    "main.css": "/static/css/main.b429117b.css",
+    "main.js": "/static/js/main.aa2ecfce.js",
     "static/js/453.14a764a5.chunk.js": "/static/js/453.14a764a5.chunk.js",
     "static/media/noplan_img.svg": "/static/media/noplan_img.26bf3c97c0112ca23a793184e91f201c.svg",
     "static/media/400_img.png": "/static/media/400_img.c85bf0b6203bec6bd93f.png",
     "static/media/userAvatar.svg": "/static/media/userAvatar.78f2ba5ff2c2e8afe60dd764a1355f7e.svg",
     "static/media/404img.png": "/static/media/404img.7e28f87e6f575248280f.png",
-    "static/media/signup_logo.svg": "/static/media/signup_logo.693bea12e1e5825ae527855da65045b5.svg",
     "static/media/loading-gif.gif": "/static/media/loading-gif.803f24369a085e35482e.gif",
     "static/media/flag_img.svg": "/static/media/flag_img.d91e629b4321cd17b0029f11c79b17d4.svg",
     "static/media/logo.png": "/static/media/logo.4c5472097ae5c5d9e65d.png",
     "static/media/Animation - 1719829224012 (2).gif": "/static/media/Animation - 1719829224012 (2).73bacdccfecf6b777f9a.gif",
     "static/media/left-right-icon.svg": "/static/media/left-right-icon.c70e86073f834fc3d955d4e7b526df33.svg",
     "index.html": "/index.html",
-    "static/media/vuexy-logo.svg": "/static/media/vuexy-logo.00af8c7beff5ced6337072235820b851.svg",
     "static/media/rectangleShape.svg": "/static/media/rectangleShape.d137b88237b53ba4ec6f3b28a73f2037.svg",
     "static/media/shape.svg": "/static/media/shape.ec5bb7b0892f0ea6afb1955da9a8f835.svg",
-    "main.99423c34.css.map": "/static/css/main.99423c34.css.map",
-    "main.c36f676f.js.map": "/static/js/main.c36f676f.js.map",
+    "main.b429117b.css.map": "/static/css/main.b429117b.css.map",
+    "main.aa2ecfce.js.map": "/static/js/main.aa2ecfce.js.map",
     "453.14a764a5.chunk.js.map": "/static/js/453.14a764a5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.99423c34.css",
-    "static/js/main.c36f676f.js"
+    "static/css/main.b429117b.css",
+    "static/js/main.aa2ecfce.js"
   ]
 }

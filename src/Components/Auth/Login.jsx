@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./style.css"
-import heart_logo from "../Images/vuexy-logo.svg"
+import ai_logo from "../Images/logo.png"
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { loginSchema } from '../Utils/Validation/Validation'
@@ -93,13 +93,13 @@ useEffect(() => {
       
     <div className='login_wrapper'>
         <div className='d-flex login_header gap-2 align-items-center justify-content-center'>
-    <img src={heart_logo} className='heart_logo' alt='heart_logo'/> 
-    <h3 className='cmn_heading_style'> Plan AI Detector</h3>
+    <img src={ai_logo} className='ai_logo' alt='ai_logo'/> 
+    <h3 className='cmn_heading_style plan_ai_detector_heading'> Plan AI Detector</h3>
 
         </div>
 
     <div className='login_content'>
-   <h4 className='cmn_heading_style mt-4'>Welcome to Plan AI Detector! </h4>
+   <h4 className='cmn_heading_style mt-3'>Welcome to Plan AI Detector! </h4>
    <h6 className='cmn_small_heading'>Please sign in to your account and start the adventure</h6>
 
    <form onSubmit={formik.handleSubmit}>

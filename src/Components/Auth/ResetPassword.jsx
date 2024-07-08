@@ -10,7 +10,7 @@ import {
   resetPasswordAction,
 } from "../Utils/Store/AuthSlice/ResetPasswordSlice";
 import { useNavigate, useLocation } from "react-router";
-import heart_logo from "../Images/vuexy-logo.svg";
+import ai_logo from "../Images/logo.png";
 import { toast } from "react-toastify";
 import Button from "../CommonComponents/Button";
 import "./style.css";
@@ -66,8 +66,8 @@ const ResetPassword = () => {
 
           <div className="login_wrapper">
             <div className="d-flex login_header gap-2 align-items-center justify-content-center">
-              <img src={heart_logo} className="heart_logo" alt="heart_logo" />
-              <h3 className="cmn_heading_style"> Plan AI Detector</h3>
+              <img src={ai_logo} className="ai_logo" alt="ai_logo" />
+              <h3 className="cmn_heading_style plan_ai_detector_heading"> Plan AI Detector</h3>
             </div>
 
             <div className="login_content">

@@ -27,7 +27,7 @@ navigate("/")
           <div className='header_outer container-fluid'>
    
           <div className='header_outer_wrapper d-flex login_header gap-2 align-items-center justify-content-center' onClick={()=>{navigate("/dashboard")}}>
-    <img src={ai_logo} className='ai_logo' alt='ai_logo'/> 
+    <img src={ai_logo} className='quanti_logo' alt='ai_logo'/> 
 
        
           </div>

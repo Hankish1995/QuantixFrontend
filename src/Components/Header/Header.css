@@ -56,11 +56,7 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
     padding: 0px;
 
 }
-.ai_logo{
-    height: 69px;
-    width: 106px;
 
-}
 .profile_item_wrapper{
     cursor: pointer;
     padding: 5px 15px !important;
@@ -90,6 +86,11 @@ ul.profile_item_wrapper li:last-child {
 .profile_dropdown_wrapper .dropdown-menu.show {
     padding: 0px;
 }
+.quanti_logo{
+    height: 76px;
+    width: 124px;
+    transform: translate(-30px, 3px);
+}
  @media screen and (min-width:992px){
     .navbar-expand-lg .navbar-nav .dropdown-menu {
         left: auto !important;
@@ -102,12 +103,9 @@ ul.profile_item_wrapper li:last-child {
     margin: 15px 0px;
     }
     .navbar_outer div#basic-navbar-nav {
-        margin-left: 2rem;
+        margin-left: 10px;
     }
-    .ai_logo {
-        height: 66px;
-        width: 100px;
-    }
+    
     
 }
  @media screen and (max-width:767px){

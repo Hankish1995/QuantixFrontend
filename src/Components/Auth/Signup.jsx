@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./style.css";
-import logo from "../Images/signup_logo.svg";
+import ai_logo from "../Images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signupSchema } from "../Utils/Validation/Validation";
@@ -54,8 +54,8 @@ const Signup = () => {
         <CommonRectangleImg/>
       <div className="login_wrapper">
         <div className="d-flex login_header gap-2 align-items-center justify-content-center">
-          <img src={logo} className="heart_logo" alt="heart_logo"/>
-          <h3 className="cmn_heading_style"> Plan AI Detector</h3>
+          <img src={ai_logo} className="ai_logo" alt="ai_logo"/>
+          <h3 className="cmn_heading_style plan_ai_detector_heading"> Plan AI Detector</h3>
         </div>
 
         <div className="login_content">
