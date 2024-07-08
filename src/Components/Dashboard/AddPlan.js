@@ -61,23 +61,28 @@ const AddPlan = () => {
     const validTypes = ['image/png', 'image/jpg', 'image/jpeg',"image/gif","image/webp"];
     const validExtensions = ['png', 'jpg', 'jpeg','gif','webp'];
   
-    // if ( selectedFile?.type === 'application/pdf') {
-    //   const fileURL = URL.createObjectURL(selectedFile);
-    //   setFiles(selectedFiles);
-    //   setPdfFile(fileURL);
-    // }
-   if ( selectedFile){
+ 
+    if (selectedFile) {
+      const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
       
-      setFiles(selectedFiles);
-      const fileUrl = URL.createObjectURL(selectedFiles[0]);
-      setImageUrl(fileUrl);
-    } else{
+      const validExtensions = ['jpg', 'jpeg', 'png'];
     
+      if (validExtensions.includes(fileExtension)) {
+        // Valid file extension
+        setFiles(selectedFiles);
+        const fileUrl = URL.createObjectURL(selectedFile);
+        setImageUrl(fileUrl);
+      } else {
+        // Invalid file extension
+        setImageUrl('');
+        toast.error('This file format is not allowed. You can only add images with extensions: jpg, jpeg, png');
+      }
+    } else {
+      // No file selected
+      toast.error('No file selected');
       setImageUrl('');
-      // toast.error('This file format not allowed. You can only add images having extensions :jpeg,png,jpg ');
-
     }
-
+    
     // if (selectedFile) {
     //   const fileType = selectedFile.type;
     //   const fileExtension = selectedFile.name.split('.').pop().toLowerCase();

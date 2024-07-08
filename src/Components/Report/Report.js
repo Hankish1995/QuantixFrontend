@@ -201,18 +201,18 @@ const Report = () => {
               </h4>
               <div className="row cmn_padding">
                 <div className="col-lg-6 col-sm-12 col-md-6 ">
-                  <div className={`white_bg report_content_outer ${image && image[0]?.type==="application/pdf" || extension==="pdf"? "":"image_container"}`}>
+                  <div className={`white_bg report_content_outer image_container`}>
                     <div className="zone_outer"></div>
 
                     <div className="report_diagram_wrapper">
-                      {image && image[0]?.type==="application/pdf" || extension==="pdf"? 
-                       <embed src={image_data? image_data+"#toolbar=0":plan_estimates?.data?.data?.imageUrl} type="application/pdf" width="100%" height="500px" className="pdfFile_container"/> : 
+                      {/* {image && image[0]?.type==="application/pdf" || extension==="pdf"? 
+                       <embed src={image_data? image_data+"#toolbar=0":plan_estimates?.data?.data?.imageUrl} type="application/pdf" width="100%" height="500px" className="pdfFile_container"/> :  */}
                       <img
                         src={image_data ? image_data :  plan_estimates?.data?.data?.imageUrl}
                         alt="report_diagram"
                         className="report_diagram"
                       />
-                      }
+                      {/* } */}
                     </div>
                   </div>
                 </div>
