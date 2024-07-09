@@ -58,14 +58,14 @@ const AddPlan = () => {
 
     const selectedFiles = Array.from(e.target.files);
     const selectedFile = e.target.files[0];
-    const validTypes = ['image/png', 'image/jpg', 'image/jpeg',"image/gif","image/webp"];
-    const validExtensions = ['png', 'jpg', 'jpeg','gif','webp'];
+    const validTypes = ['image/png', 'image/jpg', 'image/jpeg',"image/gif","image/webp","application/pdf"];
+    const validExtensions = ['png', 'jpg', 'jpeg','gif','webp',"pdf"];
   
  
     if (selectedFile) {
       const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
       
-      const validExtensions = ['jpg', 'jpeg', 'png'];
+      // const validExtensions = ['jpg', 'jpeg', 'png'];
     
       if (validExtensions.includes(fileExtension)) {
         // Valid file extension

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,useMemo } from "react";
 import "./Report.css";
 import animation_loader_img from "../Images/Animation - 1719829224012 (2).gif"
 import {useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,7 @@ import badrequest_img from "../Images/400_img.png";
 import noplan_img from "../Images/noplan_img.svg";
 
 import { toast } from "react-toastify";
-import { getPlanDetailsEstimates } from "../Utils/Store/PlanSlice/get_plan_details_slice";
+import { clear_plan_estimates, getPlanDetailsEstimates } from "../Utils/Store/PlanSlice/get_plan_details_slice";
 const Report = () => {
   const dispatch = useDispatch()
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
@@ -40,8 +40,9 @@ const Report = () => {
   useEffect(() => {
     if(planId && !isNotFound){
       dispatch(getPlanDetailsEstimates({planId :planId }))
+      dispatch( clear_plan_estimates())
     }
-
+   
   },[!isNotFound,planId])
 
   
@@ -85,10 +86,6 @@ const Report = () => {
     if (addPlanData.isError) {
       toast.error(addPlanData.error);
     }
-    if (image) {
-      imageUrl = URL.createObjectURL(image[0]);
-      setImage_data(imageUrl);
-    }
     if (addPlanData?.isSuccess) {
       let processedContent;
 
@@ -114,7 +111,7 @@ const Report = () => {
 
       setApiResponse(processedContent);
     }
-  }, [addPlanData, image]);
+  }, [addPlanData]);
 
   // Function to format table-like content
   const formatTableContent = (content) => {
@@ -173,7 +170,15 @@ const Report = () => {
       divRef.current.scrollTop = divRef.current.scrollHeight;
     }
   }, [apiResponse]);
+
+  useEffect(() => {
+    if (image) {
+      imageUrl = URL.createObjectURL(image[0]);
+      setImage_data(imageUrl);
+    }
+  },[])
  
+
 
   // code to get file extension 
   let extension
@@ -183,6 +188,16 @@ const Report = () => {
      extension = parts[parts?.length - 1].split('?')[0];
 
   }
+  
+
+  const imageUri = useMemo(() => {
+    if (image && image[0]?.type === "application/pdf" || extension === "pdf") {
+     
+      return image_data && `${image_data}#toolbar=0`
+    } else {
+      return image_data && image_data;
+    }
+  }, [image_data]);
 
   return (
     <>
@@ -201,18 +216,25 @@ const Report = () => {
               </h4>
               <div className="row cmn_padding">
                 <div className="col-lg-6 col-sm-12 col-md-6 ">
-                  <div className={`white_bg report_content_outer image_container`}>
+                  <div className={`white_bg report_content_outer ${image && image[0]?.type==="application/pdf" || extension==="pdf"?"":"image_container"}`}>
                     <div className="zone_outer"></div>
 
                     <div className="report_diagram_wrapper">
-                      {/* {image && image[0]?.type==="application/pdf" || extension==="pdf"? 
-                       <embed src={image_data? image_data+"#toolbar=0":plan_estimates?.data?.data?.imageUrl} type="application/pdf" width="100%" height="500px" className="pdfFile_container"/> :  */}
+                      {image && image[0]?.type==="application/pdf" || extension==="pdf"? 
+                       <embed
+                       src={imageUri ? imageUri : plan_estimates?.data?.data?.imageUrl}
+                       type="application/pdf"
+                       width="100%"
+                       height="500px"
+                       className="pdfFile_container"
+                     />
+                      : 
                       <img
                         src={image_data ? image_data :  plan_estimates?.data?.data?.imageUrl}
                         alt="report_diagram"
                         className="report_diagram"
                       />
-                      {/* } */}
+                       }
                     </div>
                   </div>
                 </div>

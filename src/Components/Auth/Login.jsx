@@ -99,7 +99,7 @@ useEffect(() => {
         </div>
 
     <div className='login_content'>
-   <h4 className='cmn_heading_style mt-3'>Welcome to Plan AI Detector! </h4>
+   <h4 className='cmn_heading_style mt-4'>Welcome to Plan AI Detector! 👋 </h4>
    <h6 className='cmn_small_heading'>Please sign in to your account and start the adventure</h6>
 
    <form onSubmit={formik.handleSubmit}>

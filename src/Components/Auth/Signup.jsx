@@ -59,7 +59,7 @@ const Signup = () => {
         </div>
 
         <div className="login_content">
-          <h4 className="cmn_heading_style mt-2">Create your account </h4>
+          <h4 className="cmn_heading_style mt-4">Create your account 🚀 </h4>
           <h6 className="cmn_small_heading">
             Please Create your account and start the adventure!
           </h6>

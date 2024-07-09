@@ -106,7 +106,9 @@
     font-size: 24px;
     padding-left: 20px;
 }
-
+.imageloading_container{
+height: calc(100vh - 11rem);
+}
 @media screen and (max-width:991px){
     .report_content_outer {
         margin-top: 25px;

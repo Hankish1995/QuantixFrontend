@@ -123,14 +123,15 @@ input:focus-visible {
   cursor: pointer;
 }
 .ai_logo{
-  height: 69px;
-  width: 106px;
+  height: 50px;
+  width: 50px;
+
 
 }
 
-.plan_ai_detector_heading{
-  transform: translate(-32px, 3px);
-}
+/* .plan_ai_detector_heading{
+  transform: translate(-32px, -1px);
+} */
 @media screen and (min-width:1536px){
 
  
@@ -146,8 +147,8 @@ input:focus-visible {
 }
  @media screen and (min-width:1440px) {
   .ai_logo {
-    height: 90px;
-    width: 126px;
+    height: 56px;
+    width: 56px;
 }
  }
 @media screen and (max-width:1439px){
@@ -169,8 +170,8 @@ input:focus-visible {
     padding: 17px
 }
 .ai_logo {
-  height: 66px;
-  width: 100px;
+  height: 40px;
+  width: 40px;
 }
 }
 
