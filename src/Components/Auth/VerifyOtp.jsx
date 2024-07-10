@@ -92,11 +92,11 @@ const VerifyOtp = () => {
         <div className="login_wrapper">
           <div className="d-flex login_header gap-2 align-items-center justify-content-center">
             <img src={ai_logo} className="ai_logo" alt="ai_logo" />
-            <h3 className="cmn_heading_style plan_ai_detector_heading"> Plan AI Detector</h3>
+            <h3 className="cmn_heading_style"> Plan AI Detector</h3>
           </div>
 
           <div className="login_content">
-            <h3 className="cmn_heading_style mt-4">OTP Verification</h3>
+            <h3 className="cmn_heading_style semi_bold  mt-4">OTP Verification</h3>
             <form onSubmit={formik.handleSubmit}>
               <div className="form-group mb-3">
                 <div className="otp-inputs">

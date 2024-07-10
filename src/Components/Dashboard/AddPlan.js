@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import SpinnerLoder from "../CommonComponents/SpinnerLoder";
 import { MdOutlineCancel } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
 
 const AddPlan = () => {
   const [files, setFiles] = useState([]);
@@ -144,9 +145,12 @@ const AddPlan = () => {
   return (
     <div className="dashboardmenu_container cmn_container ">
       <div className="">
-      <h3 className="cmn_heading_style dashboard_plan_heading cursor-pointer" onClick={()=>{navigate("/dashboard")}}>
-        <span className="submit_plan_heading">Dashboard</span>/Submit plan
+<div className="align-items-center d-flex gap-3 justify-content-between gap-3 addplan_header_outer">
+<h3 className="cmn_heading_style dashboard_plan_heading cursor-pointer d-flex align-items-center" onClick={()=>{navigate("/dashboard")}}>
+         <IoIosArrowBack onClick={()=>{navigate("/dashboard")}}/><span className="submit_plan_heading">Dashboard</span>/Submit plan
       </h3>
+   <div class="alert alert-warning alert_quality mb-0" role="alert">Please add high-quality image or PDF</div>
+</div>
       <form onSubmit={formik.handleSubmit}>
         <div className="plan_details_outer cmn_padding white_bg cmn_box-shadow">
           <h4 className="Plan_Details_heading">Plan Details</h4>

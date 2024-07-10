@@ -12,7 +12,7 @@
     color: #4B465C;
     font-weight: 400;
     font-family: "Public Sans",sans-serif;
-    padding-top: 5px;
+    line-height: 34px;
 }
 li.previous.disabled {
     width: 120px;
@@ -44,7 +44,7 @@ li.previous a {
 }
 
  @media screen and (min-width:1536px) {
-    .pagination_wrapper {
+    /* .pagination_wrapper {
         padding: 14px 40px;
     }
     .pagination_wrapper ul li {
@@ -57,7 +57,7 @@ li.previous a {
     }
     .pagination_wrapper ul li.next {
         width: 82px ;
-    }
+    } */
  }
  @media screen and (max-width:767px){
     .pagination_wrapper ul{

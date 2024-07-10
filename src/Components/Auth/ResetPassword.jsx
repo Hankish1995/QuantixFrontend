@@ -67,11 +67,11 @@ const ResetPassword = () => {
           <div className="login_wrapper">
             <div className="d-flex login_header gap-2 align-items-center justify-content-center">
               <img src={ai_logo} className="ai_logo" alt="ai_logo" />
-              <h3 className="cmn_heading_style plan_ai_detector_heading"> Plan AI Detector</h3>
+              <h3 className="cmn_heading_style"> Plan AI Detector</h3>
             </div>
 
             <div className="login_content">
-              <h4 className="cmn_heading_style mt-4">Reset Password </h4>
+              <h4 className="cmn_heading_style mt-4 semi_bold">Reset Password </h4>
 
               <form onSubmit={formik.handleSubmit}>
                 <div className="form-group mb-3">

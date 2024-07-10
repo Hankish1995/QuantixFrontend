@@ -55,11 +55,11 @@ const Signup = () => {
       <div className="login_wrapper">
         <div className="d-flex login_header gap-2 align-items-center justify-content-center">
           <img src={ai_logo} className="ai_logo" alt="ai_logo"/>
-          <h3 className="cmn_heading_style plan_ai_detector_heading"> Plan AI Detector</h3>
+          <h3 className="cmn_heading_style "> Plan AI Detector</h3>
         </div>
 
         <div className="login_content">
-          <h4 className="cmn_heading_style mt-4">Create your account 🚀 </h4>
+          <h4 className="cmn_heading_style mt-4 cmn_semibold_font">Create your account 🚀 </h4>
           <h6 className="cmn_small_heading">
             Please Create your account and start the adventure!
           </h6>

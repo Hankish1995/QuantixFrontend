@@ -54,8 +54,10 @@ h1,h3,h2,h4,h5,h6,label{
   background: #f8f7fa;
 }
 .error{
-  color:red;
-  font-size: 14px;
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .cmn_padding{
   padding: 20px;
@@ -104,7 +106,7 @@ input{
 }
 .dashboard_plan_heading{
   padding: 20px;
-  font-weight: 600;
+  font-weight: 600 !important;
   border-top: 1px solid #DBDADE;
 }
 .form-control:focus{
@@ -128,10 +130,10 @@ input:focus-visible {
 
 
 }
+.semi_bold{
+  font-weight: 600 !important;
+}
 
-/* .plan_ai_detector_heading{
-  transform: translate(-32px, -1px);
-} */
 @media screen and (min-width:1536px){
 
  

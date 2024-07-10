@@ -13,6 +13,8 @@ import noplan_img from "../Images/noplan_img.svg";
 import { toast } from "react-toastify";
 import { clear_plan_estimates, getPlanDetailsEstimates } from "../Utils/Store/PlanSlice/get_plan_details_slice";
 import { clear_add_plan_slice } from "../Utils/Store/PlanSlice/AddPlanSlice";
+import { MdArrowBack } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
 const Report = () => {
   const dispatch = useDispatch()
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
@@ -212,9 +214,12 @@ console.log(addPlanData?.data,"addPlanData")
         <section className="report_outer ">
           <div className="dashboard_container cmn_container pb-4">
             <div className="">
-              <h3 className="cmn_heading_style dashboard_plan_heading cursor-pointer" onClick={()=>{navigate("/dashboard")}}>
-                <span className="submit_plan_heading">Dashboard</span>/Report
+              
+              <h3 className="cmn_heading_style cursor-pointer dashboard_plan_heading d-flex align-items-center" >
+            <IoIosArrowBack className="cursor-pointer" onClick={()=>{navigate("/dashboard")}}/>
+               <span className="submit_plan_heading" onClick={()=>{navigate("/dashboard")}}>Dashboard</span>/Report
               </h3>
+
               <h4 className="cmn_heading_style plan_name_heading">
                 {" "}
                 {(planName || plan_estimates?.data?.data?.planName) && capitalLiseString(planName ? planName : plan_estimates?.data?.data?.planName)}

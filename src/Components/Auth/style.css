@@ -94,13 +94,19 @@
     font-size: 14px;
 
   }
+  .plan_ai_detector_heading{
+    font-weight: 600 !important;
+  }
+  .cmn_semibold_font{
+    font-weight: 600 !important;
+  }
 @media screen and (min-width:1500px){
     .login_container{
         height: 100vh;
     }
 }
 @media screen and (min-width:1536px){
-.form-group label {
+/* .form-group label {
 font-size: 18px;
 }
 .forgotpassword_container h6{
@@ -108,7 +114,7 @@ font-size: 18px;
 }
 .signin_btn {
     font-size: 20px;
-}
+} */
 }
  @media screen and (max-width:1280px) {
     .signin_btn{
