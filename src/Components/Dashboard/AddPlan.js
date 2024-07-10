@@ -75,7 +75,7 @@ const AddPlan = () => {
       } else {
         // Invalid file extension
         setImageUrl('');
-        toast.error('This file format is not allowed. You can only add images with extensions: jpg, jpeg, png');
+        toast.error('This file format is not allowed. You can only add images with extensions: jpg, jpeg, png and pdf');
       }
     } else {
       // No file selected
