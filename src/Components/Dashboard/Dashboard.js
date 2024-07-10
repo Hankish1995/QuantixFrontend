@@ -75,6 +75,7 @@ const handlePageClick = (event ) => {
 
 const selectHandler =(e)=>{
 setLimit(e.target.value)
+setCurrentPage(1)
 }
 const submitPlanHandler=()=>{
   navigate("/addPlan")
@@ -85,6 +86,8 @@ const showDeletePlanModalHandler=(id)=>{
 setShowDeletePlanModal(true)
 setId(id)
 }
+
+
   return (
      
     <div className='dashboard_container cmn_container '>
