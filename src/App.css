@@ -135,13 +135,11 @@ input:focus-visible {
 @media screen and (min-width:1536px){
 
  
-  .cmn_heading_style{
-    font-size: 25px !important;
-  }
-  .cmn_small_heading{
+
+  /* .cmn_small_heading{
     font-size: 18px;
   }
- 
+  */
  
 
 }

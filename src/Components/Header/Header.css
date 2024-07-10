@@ -95,12 +95,7 @@ ul.profile_item_wrapper li:last-child {
     padding: 10px 20px;
 }
 
- @media screen and (min-width:1500px) {
-    .quanti_logo {
-        height: 105px;
-        width: 105px;
-    }
- }
+ 
  @media screen and (min-width:992px){
     .navbar-expand-lg .navbar-nav .dropdown-menu {
         left: auto !important;

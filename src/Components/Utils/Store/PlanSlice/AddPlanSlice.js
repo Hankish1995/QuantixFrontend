@@ -65,7 +65,15 @@ const addPlanSlice = createSlice({
   name: "addPlanSlice",
   initialState,
   reducers: {
-    clear_add_plan_slice: () => initialState,
+    clear_add_plan_slice: (state) => {
+      state.data = "";
+      state.isSuccess = false;
+      state.loading = false;
+      state.error = null;
+      state.isError = false;
+      state.responseLoader = false;
+      return state;
+    },
     updateStreamData: (state, action) => {
       state.data += action.payload; // Append new streamed data to existing data
       state.loading = false;

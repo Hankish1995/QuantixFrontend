@@ -51,7 +51,7 @@ const Report = () => {
   dispatch(clear_add_plan_slice())
  }
   },[])
-
+console.log(addPlanData?.data,"addPlanData")
 
   useEffect(() => {
     if(plan_estimates?.isSuccess){
