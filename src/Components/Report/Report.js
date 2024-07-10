@@ -12,6 +12,7 @@ import noplan_img from "../Images/noplan_img.svg";
 
 import { toast } from "react-toastify";
 import { clear_plan_estimates, getPlanDetailsEstimates } from "../Utils/Store/PlanSlice/get_plan_details_slice";
+import { clear_add_plan_slice } from "../Utils/Store/PlanSlice/AddPlanSlice";
 const Report = () => {
   const dispatch = useDispatch()
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
@@ -45,7 +46,11 @@ const Report = () => {
    
   },[!isNotFound,planId])
 
-  
+  useEffect(()=>{
+ return ()=>{
+  dispatch(clear_add_plan_slice())
+ }
+  },[])
 
 
   useEffect(() => {
