@@ -83,17 +83,6 @@ const AddPlan = () => {
       toast.error('No file selected');
       setImageUrl('');
     }
-
-    // if (selectedFile) {
-    //   const fileType = selectedFile.type;
-    //   const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
-
-    // if (validTypes.includes(fileType) && validExtensions.includes(fileExtension)) {
-
-    // } else {
-    //   toast.error('No file selected');
-    //   setImageUrl('');
-    // }
   };
 
   const formik = useFormik({
@@ -136,8 +125,6 @@ const AddPlan = () => {
 
   useEffect(() => {
     if (addPlanData.isSuccess) {
-      // toast.success(addPlanData.data.message)
-      // dispatch(clear_add_plan_slice())
     }
     if (addPlanData.isError === true) {
       toast.error(addPlanData.error.message);
