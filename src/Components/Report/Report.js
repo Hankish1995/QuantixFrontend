@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef,useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import "./Report.css";
 import animation_loader_img from "../Images/Animation - 1719829224012 (2).gif"
-import {useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DOMPurify from "dompurify";
 import Loader from "../CommonComponents/Loader";
 import { useLocation, useNavigate } from "react-router";
@@ -18,12 +18,14 @@ import { IoIosArrowBack } from "react-icons/io";
 const Report = () => {
   const dispatch = useDispatch()
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
-  const plan_estimates = useSelector((store) => {return store.PLAN_ESTIMATES})
+  const plan_estimates = useSelector((store) => { return store.PLAN_ESTIMATES })
+
+  console.log(plan_estimates, "plan_estimates plan_estimatesplan_estimatesplan_estimatesplan_estimatesplan_estimates")
 
   const [apiResponse, setApiResponse] = useState("");
   const [image_data, setImage_data] = useState();
   const location = useLocation();
-  const { data,planId,isNotFound } = location.state || {};
+  const { data, planId, isNotFound } = location.state || {};
 
 
 
@@ -33,7 +35,7 @@ const Report = () => {
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
- const navigate=useNavigate()
+  const navigate = useNavigate()
   useEffect(() => {
     setSuccess(addPlanData.isSuccess);
     setError(addPlanData.isError);
@@ -41,22 +43,22 @@ const Report = () => {
   }, [addPlanData]);
 
   useEffect(() => {
-    if(planId && !isNotFound){
-      dispatch(getPlanDetailsEstimates({planId :planId }))
-      dispatch( clear_plan_estimates())
+    if (planId && !isNotFound) {
+      dispatch(getPlanDetailsEstimates({ planId: planId }))
+      dispatch(clear_plan_estimates())
     }
-   
-  },[!isNotFound,planId])
 
-  useEffect(()=>{
- return ()=>{
-  dispatch(clear_add_plan_slice())
- }
-  },[])
-console.log(addPlanData?.data,"addPlanData")
+  }, [!isNotFound, planId])
 
   useEffect(() => {
-    if(plan_estimates?.isSuccess){
+    return () => {
+      dispatch(clear_add_plan_slice())
+    }
+  }, [])
+  console.log(addPlanData?.data, "addPlanData")
+
+  useEffect(() => {
+    if (plan_estimates?.isSuccess) {
       let processedContent;
 
       // Example pattern to detect a table format
@@ -82,11 +84,11 @@ console.log(addPlanData?.data,"addPlanData")
       setApiResponse(processedContent);
     }
 
-    if(plan_estimates?.isError){
+    if (plan_estimates?.isError) {
       toast.error("Something went wrong")
     }
 
-  },[plan_estimates])
+  }, [plan_estimates])
 
   let imageUrl;
   useEffect(() => {
@@ -183,23 +185,23 @@ console.log(addPlanData?.data,"addPlanData")
       imageUrl = URL.createObjectURL(image[0]);
       setImage_data(imageUrl);
     }
-  },[])
- 
+  }, [])
+
 
 
   // code to get file extension 
   let extension
-  if(plan_estimates?.data?.data?.imageUrl){
-    const url=plan_estimates?.data?.data?.imageUrl
-      const parts = url?.split('.');
-     extension = parts[parts?.length - 1].split('?')[0];
+  if (plan_estimates?.data?.data?.imageUrl) {
+    const url = plan_estimates?.data?.data?.imageUrl
+    const parts = url?.split('.');
+    extension = parts[parts?.length - 1].split('?')[0];
 
   }
-  
+
 
   const imageUri = useMemo(() => {
     if (image && image[0]?.type === "application/pdf" || extension === "pdf") {
-     
+
       return image_data && `${image_data}#toolbar=0`
     } else {
       return image_data && image_data;
@@ -214,37 +216,39 @@ console.log(addPlanData?.data,"addPlanData")
         <section className="report_outer ">
           <div className="dashboard_container cmn_container pb-4">
             <div className="">
-              
-              <h3 className="cmn_heading_style cursor-pointer dashboard_plan_heading d-flex align-items-center" >
-            <IoIosArrowBack className="cursor-pointer" onClick={()=>{navigate("/dashboard")}}/>
-               <span className="submit_plan_heading" onClick={()=>{navigate("/dashboard")}}>Dashboard</span>/Report
-              </h3>
 
-              <h4 className="cmn_heading_style plan_name_heading">
-                {" "}
-                {(planName || plan_estimates?.data?.data?.planName) && capitalLiseString(planName ? planName : plan_estimates?.data?.data?.planName)}
-              </h4>
+              <div className="d-flex justify-content-between">
+                <div>
+                  <h3 className="cmn_heading_style cursor-pointer dashboard_plan_heading d-flex align-items-center" >
+                    <IoIosArrowBack className="cursor-pointer" onClick={() => { navigate("/dashboard") }} />
+                    <span className="submit_plan_heading" onClick={() => { navigate("/dashboard") }}>Dashboard</span>
+                  </h3>
+                </div>
+                <div>
+                  <h3 className="submit_plan_heading adjust_text">{planName ? planName : plan_estimates?.data?.data?.planName}</h3>
+                </div>
+              </div>
               <div className="row cmn_padding">
                 <div className="col-lg-6 col-sm-12 col-md-6 ">
-                  <div className={`white_bg report_content_outer ${image && image[0]?.type==="application/pdf" || extension==="pdf"?"":"image_container"}`}>
+                  <div className={`white_bg report_content_outer ${image && image[0]?.type === "application/pdf" || extension === "pdf" ? "" : "image_container"}`}>
                     <div className="zone_outer"></div>
 
                     <div className="report_diagram_wrapper">
-                      {image && image[0]?.type==="application/pdf" || extension==="pdf"? 
-                       <embed
-                       src={imageUri ? imageUri : plan_estimates?.data?.data?.imageUrl}
-                       type="application/pdf"
-                       width="100%"
-                       height="500px"
-                       className="pdfFile_container"
-                     />
-                      : 
-                      <img
-                        src={image_data ? image_data :  plan_estimates?.data?.data?.imageUrl}
-                        alt="report_diagram"
-                        className="report_diagram"
-                      />
-                       }
+                      {image && image[0]?.type === "application/pdf" || extension === "pdf" ?
+                        <embed
+                          src={imageUri ? imageUri : plan_estimates?.data?.data?.imageUrl}
+                          type="application/pdf"
+                          width="100%"
+                          height="500px"
+                          className="pdfFile_container"
+                        />
+                        :
+                        <img
+                          src={image_data ? image_data : plan_estimates?.data?.data?.imageUrl}
+                          alt="report_diagram"
+                          className="report_diagram"
+                        />
+                      }
                     </div>
                   </div>
                 </div>
@@ -254,11 +258,11 @@ console.log(addPlanData?.data,"addPlanData")
                     <div className="legend_outer">
                       <ul className="legend_list">
                         <li>
-                          {addPlanData?.loading? (
-                           
+                          {addPlanData?.loading ? (
 
-                              <Loader classname="loading_container"/>
-                            
+
+                            <Loader classname="loading_container" />
+
                           ) : (
                             <div
                               className="zone_content_wrapper report_response_outer"
@@ -280,8 +284,8 @@ console.log(addPlanData?.data,"addPlanData")
                               )}
                               {addPlanData?.responseLoader && (
                                 <div className=" text-center">
-                                  <img src={animation_loader_img} height="52px" width="52px"/>
-                                
+                                  <img src={animation_loader_img} height="52px" width="52px" />
+
                                 </div>
                               )}
                             </div>

@@ -57,6 +57,13 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
 
 }
 
+.user_img {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 60px;
+}
+
 .profile_item_wrapper{
     cursor: pointer;
     padding: 5px 15px !important;

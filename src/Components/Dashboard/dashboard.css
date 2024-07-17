@@ -66,10 +66,10 @@
   }
 .dashboardmenu_container{
     height: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px); 
 }
 .dashboard_container{
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     height: 100%;
 }
 .actions_wrapper svg{
@@ -97,6 +97,11 @@
     border-radius: 10px;
     cursor: pointer;
 }
+.welcomne_text{
+    font-size: 28px;
+    color: #5d586c;
+}
+
 .file_upload {
     width: 50px;
     height: 50px;
@@ -111,7 +116,10 @@
 h3.drop_file_text{
     font-weight: 600;
 }
-
+.no_plan_img_outer {
+    height: calc(100vh - 262px);
+    align-items: center;
+}
 
 button.review_btn {
     color: #7367F0;
@@ -237,5 +245,12 @@ td.plan_doesnotexist_heading {
     }
     .drop_file_text.mt-3 {
         font-size: 16px !important;
+    }
+    .welcomne_text{
+    font-size: 16px;
+    padding: 4px 20px;
+    }
+    .no_plan_img_outer {
+        display: block;
     }
 }

@@ -24,7 +24,19 @@ h1,h3,h2,h4,h5,h6,label{
 ::-webkit-scrollbar {
   width: 6px;
 }
-
+.image_preview{
+  border-radius: 94px;
+  object-fit: cover;
+  height: 126px;
+  width: 126px;
+  border: 1px solid #7367F0;
+}
+h3.user_name {
+  font-size: 17px;
+  text-align: center;
+  margin-top: 11px;
+  color: #4B465C;
+}
 
 ::-webkit-scrollbar-track {
   background: rgb(247, 244, 244); 
