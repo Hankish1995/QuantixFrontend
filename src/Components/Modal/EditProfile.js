@@ -43,7 +43,7 @@ const EditProfile = ({ show, setShow }) => {
     }
 
     const handle_update_profile = () => {
-        dispatch(update_user_profile({ email: email, profile: imageName ? imageName : logged_in_user_details?.data?.userData?.profile }))
+        dispatch(update_user_profile({ email: email ? email : logged_in_user_details?.data?.userData?.email, profile: imageName ? imageName : logged_in_user_details?.data?.userData?.profile }))
     }
 
     useEffect(() => {
@@ -76,7 +76,7 @@ const EditProfile = ({ show, setShow }) => {
                     </div>
                     <div className="form-group">
                         <label>Email</label>
-                        <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input type="email" className="form-control" value={email ? email : logged_in_user_details?.data?.userData?.email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="form-group">
                         <label>Upload image</label>

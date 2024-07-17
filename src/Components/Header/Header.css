@@ -58,8 +58,8 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {
 }
 
 .user_img {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     object-fit: cover;
     border-radius: 60px;
 }
