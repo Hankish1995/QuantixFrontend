@@ -2,36 +2,25 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import "./Report.css";
 import animation_loader_img from "../Images/Animation - 1719829224012 (2).gif"
 import { useDispatch, useSelector } from "react-redux";
-import DOMPurify from "dompurify";
 import Loader from "../CommonComponents/Loader";
 import { useLocation, useNavigate } from "react-router";
-import { capitalLiseString } from "../Utils/CommonUtils";
 import NotFound from "../Error/NotFound";
 import badrequest_img from "../Images/400_img.png";
-import noplan_img from "../Images/noplan_img.svg";
-
 import { toast } from "react-toastify";
 import { clear_plan_estimates, getPlanDetailsEstimates } from "../Utils/Store/PlanSlice/get_plan_details_slice";
 import { clear_add_plan_slice } from "../Utils/Store/PlanSlice/AddPlanSlice";
-import { MdArrowBack } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
+
 const Report = () => {
   const dispatch = useDispatch()
   const addPlanData = useSelector((store) => store.ADD_PLAN_SLICE);
   const plan_estimates = useSelector((store) => { return store.PLAN_ESTIMATES })
-
-  console.log(plan_estimates, "plan_estimates plan_estimatesplan_estimatesplan_estimatesplan_estimatesplan_estimates")
-
   const [apiResponse, setApiResponse] = useState("");
   const [image_data, setImage_data] = useState();
   const location = useLocation();
   const { data, planId, isNotFound } = location.state || {};
-
-
-
   const { planName, image } = data || {};
   const divRef = useRef(null);
-
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
@@ -60,19 +49,13 @@ const Report = () => {
   useEffect(() => {
     if (plan_estimates?.isSuccess) {
       let processedContent;
-
-      // Example pattern to detect a table format
-      const tableRegex = /^\|.*\|$/m; // Example: matches lines starting and ending with "|"
-
-      // Function to determine format based on regex patterns
+      const tableRegex = /^\|.*\|$/m;
       const determineFormat = (data) => {
         if (tableRegex.test(data)) {
-          return "table"; // Example: data appears to be in a table format
+          return "table";
         }
-        return "default"; // Default handling
+        return "default";
       };
-
-      // Match based on determined format or default
       let format = determineFormat(plan_estimates?.data?.data?.outputGenerated);
 
       if (format === "table") {
@@ -97,19 +80,13 @@ const Report = () => {
     }
     if (addPlanData?.isSuccess) {
       let processedContent;
-
-      // Example pattern to detect a table format
-      const tableRegex = /^\|.*\|$/m; // Example: matches lines starting and ending with "|"
-
-      // Function to determine format based on regex patterns
+      const tableRegex = /^\|.*\|$/m;
       const determineFormat = (data) => {
         if (tableRegex.test(data)) {
-          return "table"; // Example: data appears to be in a table format
+          return "table";
         }
-        return "default"; // Default handling
+        return "default";
       };
-
-      // Match based on determined format or default
       let format = determineFormat(addPlanData.data);
 
       if (format === "table") {
@@ -122,17 +99,12 @@ const Report = () => {
     }
   }, [addPlanData]);
 
-  // Function to format table-like content
   const formatTableContent = (content) => {
-    // Clean up unwanted characters
     content = content.replace(/["`,./[\]#\\]/g, "");
 
     content = content.replace(/stream started/gi, "");
     content = content.replace(/stream ended/gi, "");
-    // Replace markdown symbols with HTML equivalents
-    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"); // Convert text to <strong>text</strong>
-
-    // Split lines by newline and process each row
+    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
     const rows = htmlContent.split("\n");
     htmlContent = "<table>";
     rows.forEach((row) => {
@@ -149,28 +121,19 @@ const Report = () => {
   };
 
   const formatContent = (content) => {
-    // Clean up unwanted characters
     content = content.replace(/["`/[\]#\\]/g, "");
-
     content = content.replace(/stream started/gi, "");
     content = content.replace(/stream ended/gi, "");
-
-    // Replace markdown symbols with HTML equivalents
-    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"); // Convert text to <strong>text</strong>
-    htmlContent = htmlContent.replace(/\|/g, "</td><td>"); // Convert | to </td><td>
-
-    // Wrap table rows and cells in HTML table structure
+    let htmlContent = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    htmlContent = htmlContent.replace(/\|/g, "</td><td>");
     htmlContent = `<table>${htmlContent
       .split("\n")
       .map((row) => `<tr><td>${row}</td></tr>`)
       .join("")}</table>`;
-
-    // Convert **Grand Total**: $6794.55 to <p><strong>Grand Total:</strong> $6794.55</p>
     htmlContent = htmlContent.replace(
       /\*\*Grand Total\*\*: (.*?)$/m,
       "<p><strong>Grand Total:</strong> $1</p>"
     );
-
     return htmlContent;
   };
 
@@ -187,9 +150,6 @@ const Report = () => {
     }
   }, [])
 
-
-
-  // code to get file extension 
   let extension
   if (plan_estimates?.data?.data?.imageUrl) {
     const url = plan_estimates?.data?.data?.imageUrl
@@ -274,6 +234,7 @@ const Report = () => {
                                   src={badrequest_img}
                                   height="100%"
                                   width="100%"
+                                  alt="plan imag"
                                 />
                               ) : (
                                 <div

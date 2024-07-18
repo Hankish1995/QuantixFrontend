@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-// Initial State
 const initialState = {
   data: "",
   isSuccess: false,
@@ -10,7 +8,6 @@ const initialState = {
   responseLoader: false,
 };
 
-// Async Thunk Action Creator
 export const addPlanActions = createAsyncThunk(
   "plans/addPlan",
   async ({ planName, planAddress, planImg }, { dispatch, rejectWithValue }) => {
@@ -32,7 +29,7 @@ export const addPlanActions = createAsyncThunk(
       };
 
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/addPlans`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/executePlan`,
         requestOptions
       );
 
@@ -48,19 +45,14 @@ export const addPlanActions = createAsyncThunk(
         const { value, done } = await reader.read();
         if (done) break;
         const decodedValue = decoder.decode(value, { stream: true });
-        // Dispatch partial data as it streams in
         dispatch(updateStreamData(decodedValue));
       }
-
-      // Return final success state or data
       return "Streaming Completed";
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
-
-// Redux Slice
 const addPlanSlice = createSlice({
   name: "addPlanSlice",
   initialState,
@@ -75,7 +67,7 @@ const addPlanSlice = createSlice({
       return state;
     },
     updateStreamData: (state, action) => {
-      state.data += action.payload; // Append new streamed data to existing data
+      state.data += action.payload;
       state.loading = false;
       state.isSuccess = true;
     },
@@ -100,6 +92,5 @@ const addPlanSlice = createSlice({
   },
 });
 
-// Export Actions and Reducer
 export const { clear_add_plan_slice, updateStreamData } = addPlanSlice.actions;
 export default addPlanSlice.reducer;

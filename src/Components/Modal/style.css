@@ -14,6 +14,9 @@
 .deleteplan_outer .modal-footer {
     border-top: unset !important;
 }
+p.image_drop_box {
+    font-size: 12px;
+}
 .cancel_button{
     background: white;
     border: 1px solid #7367F0 !important;

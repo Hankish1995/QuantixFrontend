@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import logo from "../Images/logo.png"
 import { toast } from 'react-toastify'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -81,6 +80,7 @@ const EditProfile = ({ show, setShow }) => {
                     <div className="form-group">
                         <label>Upload image</label>
                         <input type="file" className="form-control" onDrop={(e) => handleDrop(e)} onChange={(e) => { setImageName(e.target.files[0]); handlePreviewImage(e) }} />
+                        <p className="image_drop_box">Drop files here or click to upload</p>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
