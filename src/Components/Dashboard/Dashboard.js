@@ -15,6 +15,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const Dashboard = () => {
   const getAllPlansData = useSelector((store) => { return store.GET_ALL_PLAN_SLLICE })
+  console.log(getAllPlansData, "this is the al plan sT")
   const deletePlanData = useSelector((store) => { return store.DELETE_PLAN_SLICE })
   const [currentPage, setCurrentPage] = useState(1)
   const [limit, setLimit] = useState(5)

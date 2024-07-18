@@ -14,6 +14,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import EditProfile from "../Modal/EditProfile";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { clear_login_slice } from "../Utils/Store/AuthSlice/LoginSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Header = () => {
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
+    dispatch(clear_login_slice());
     navigate("/");
   };
 

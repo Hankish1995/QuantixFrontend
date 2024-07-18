@@ -4,7 +4,6 @@ import ai_logo from "../Images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../Utils/Validation/Validation";
-import SocialLogin from "../CommonComponents/SocialLogin";
 import CommonRectangleImg from "../CommonComponents/CommonRectangleImg";
 import SquareImg from "../CommonComponents/SquareImg";
 import Button from "../CommonComponents/Button";
@@ -12,7 +11,6 @@ import { UseLogin } from "../Utils/customHooks/AuthHooks/AuthHooks";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { clear_login_slice } from "../Utils/Store/AuthSlice/LoginSlice";
-import TwitterLogin from "../CommonComponents/TwitterLogin";
 
 const Login = () => {
   const loginaction = UseLogin();
@@ -65,19 +63,15 @@ const Login = () => {
   });
 
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (loginData.isError === true) {
+    if (loginData?.isSuccess) {
+      localStorage?.setItem("token", loginData?.data?.data?.token);
+      navigate("/dashboard");
+    }
+    if (loginData.isError) {
       toast.error(loginData.error.message);
       dispatch(clear_login_slice());
-    } else if (loginData.isSuccess === true) {
-      toast.success(loginData.data.message);
-      localStorage.setItem("token", loginData?.data?.userObj?.token);
-      localStorage.setItem("username", loginData?.data?.userObj?.username);
-      localStorage.setItem("email", loginData?.data?.userObj?.email);
-      localStorage.setItem("user_id", loginData?.data?.userObj?._id);
-
-      dispatch(clear_login_slice());
-      navigate("/dashboard");
     }
   }, [loginData]);
 
