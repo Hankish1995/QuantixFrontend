@@ -9,6 +9,10 @@
     gap: 10px;
 }
 
+.loader_outer img{
+    height: 100px;
+    width: 100px;
+}
 .social_media_outer {
     height: 38px !important;
     width: 38px !important;

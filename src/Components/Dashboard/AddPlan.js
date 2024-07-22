@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import SpinnerLoder from "../CommonComponents/SpinnerLoder";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
+import { createSessionId } from "../Utils/Store/CreateSessionID/Create_session_id";
 
 const AddPlan = () => {
   const [files, setFiles] = useState([]);
@@ -21,6 +22,8 @@ const AddPlan = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const logged_in_user_details = useSelector((store) => store?.USER_PROFILE);
+  const session_id = logged_in_user_details?.data?.userData?._id + Date.now()
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -47,39 +50,25 @@ const AddPlan = () => {
     e.stopPropagation();
   };
 
-  // const handleFileSelect = (e) => {
-  //   const selectedFiles = Array.from(e.target.files);
-  //   setFiles(selectedFiles);
-  //   const imageUrl=URL.createObjectURL(selectedFiles[0])
-  //   setImageUrl(imageUrl)
-  // };
-
-
   const handleFileSelect = (e) => {
 
     const selectedFiles = Array.from(e.target.files);
     const selectedFile = e.target.files[0];
-    const validTypes = ['image/png', 'image/jpg', 'image/jpeg', "image/gif", "image/webp", "application/pdf"];
     const validExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', "pdf"];
 
 
     if (selectedFile) {
       const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
 
-      // const validExtensions = ['jpg', 'jpeg', 'png'];
-
       if (validExtensions.includes(fileExtension)) {
-        // Valid file extension
         setFiles(selectedFiles);
         const fileUrl = URL.createObjectURL(selectedFile);
         setImageUrl(fileUrl);
       } else {
-        // Invalid file extension
         setImageUrl('');
         toast.error('This file format is not allowed. You can only add images with extensions: jpg, jpeg, png and pdf');
       }
     } else {
-      // No file selected
       toast.error('No file selected');
       setImageUrl('');
     }
@@ -98,8 +87,10 @@ const AddPlan = () => {
             planName: values.planName,
             planAddress: values.planAddress,
             planImg: files,
+            sessionId: session_id,
           })
         );
+        dispatch(createSessionId({ session_id }))
 
 
         navigate('/report', {

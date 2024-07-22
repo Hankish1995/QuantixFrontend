@@ -15,14 +15,12 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const Dashboard = () => {
   const getAllPlansData = useSelector((store) => { return store.GET_ALL_PLAN_SLLICE })
-  console.log(getAllPlansData, "this is the al plan sT")
   const deletePlanData = useSelector((store) => { return store.DELETE_PLAN_SLICE })
   const [currentPage, setCurrentPage] = useState(1)
   const [limit, setLimit] = useState(5)
   const [searchPlan, setSearchPlan] = useState("")
   const [sortOrder, setSortOrder] = useState("desc")
   const [fieldName, setFieldName] = useState("PLAN NAME")
-  const [triggerDispatch, setTriggerDispatch] = useState(false);
   const [showDeletePlanModal, setShowDeletePlanModal] = useState(false)
   const [id, setId] = useState()
   const [input, setInput] = useState(false)
@@ -39,7 +37,7 @@ const Dashboard = () => {
       dispatch(clear_delete_plan_slice())
       dispatch(getAllPlanActions({ currentPage, limit, searchPlan, sortOrder, fieldName }))
     }
-  }, [deletePlanData, currentPage, limit, searchPlan, sortOrder, triggerDispatch, dispatch, fieldName])
+  }, [deletePlanData, currentPage, limit, sortOrder, dispatch, fieldName])
 
   const deletePlanHandler = () => {
     dispatch(deletePlanActions(id))
@@ -65,7 +63,18 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(getAllPlanActions({ currentPage, limit, searchPlan, sortOrder, fieldName }))
-  }, [fieldName, sortOrder, searchPlan, limit, currentPage, dispatch])
+  }, [fieldName, sortOrder, limit, currentPage, dispatch])
+
+  const handleSearchPlan = (val) => {
+
+    setSearchPlan(val);
+    setInput(true)
+    const searchTime = setTimeout(() => {
+      dispatch(getAllPlanActions({ currentPage, limit, searchPlan: val, sortOrder, fieldName }))
+    }, 300)
+
+    return () => clearInterval(searchTime)
+  }
 
   return (
     <div className='dashboard_container cmn_container '>
@@ -84,8 +93,7 @@ const Dashboard = () => {
             <div className='search_plan_wrapper d-flex gap-3'>
               <div className={`${getAllPlansData?.data?.plans?.length === 0 && !input ? "d-none" : ""}`}>
                 <input value={searchPlan} onChange={(e) => {
-                  setSearchPlan(e.target.value);
-                  setInput(true)
+                  handleSearchPlan(e.target.value)
                 }} type='text' className='form-control Search_plans_input' placeholder='Search plans ' />
               </div>
               <div>
@@ -100,7 +108,6 @@ const Dashboard = () => {
           </div>
           {getAllPlansData?.data?.plans?.length === 0 && !input && currentPage === 1 ?
             <div className='no_plan_img_outer d-flex justify-content-center'>
-              {/* <img src={no_plan_img} className='no_plan_img' alt="pla" /> */}
               <h1 className='welcomne_text'>Welcome to Quanti, <u onClick={() => submitPlanHandler()} style={{ cursor: "pointer", color: "#7367F0" }}>‘Add Plan’</u> to get started</h1>
             </div> :
             <div className='table-responsive plan_tabular_data'>
@@ -173,11 +180,11 @@ const Dashboard = () => {
                         getAllPlansData?.data?.plans?.map((data, i) => {
                           return (
                             <tr key={i}>
-                              <td onClick={() => { navigate("/report", { state: { planId: data?._id, isNotFound: false } }) }}>{capitalLiseString(data.planName)}</td>
+                              <td onClick={() => { navigate("/report", { state: { planId: data?._id, isNotFound: false } }) }} style={{ cursor: "pointer" }}>{capitalLiseString(data.planName)}</td>
                               <td>{data.planAddress}</td>
                               <td><span className={`cmn_status_text ${data.status === "active" ? " active_btn" : "inactive_btn"}`}>{data.status === false ? "Inactive" : "Active"}</span></td>
                               <td>
-                                <div className='d-flex gap-3 justify-content-end actions_wrapper '>
+                                <div className='d-flex gap-3 justify-content-end actions_wrapper align-items-center'>
                                   <img title='View plan' className='cursor-pointer' onClick={() => { navigate("/report", { state: { planId: data?._id, isNotFound: false } }) }} src={left_right_icon} alt='left_right_icon' height="20px" width="20px" />
                                   <FaRegTrashAlt title='Delete Plan' onClick={() => { showDeletePlanModalHandler(data._id) }} className=' trash-icon' />
                                 </div>

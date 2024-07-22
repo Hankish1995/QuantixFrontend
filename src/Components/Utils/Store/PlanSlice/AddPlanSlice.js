@@ -10,7 +10,7 @@ const initialState = {
 
 export const addPlanActions = createAsyncThunk(
   "plans/addPlan",
-  async ({ planName, planAddress, planImg }, { dispatch, rejectWithValue }) => {
+  async ({ planName, planAddress, planImg, sessionId, prompt }, { dispatch, rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
       const myHeaders = new Headers();
@@ -19,7 +19,9 @@ export const addPlanActions = createAsyncThunk(
       const formData = new FormData();
       formData.append("planName", planName);
       formData.append("planAddress", planAddress);
-      formData.append("planImage", planImg[0]);
+      planImg?.length > 0 && formData.append("planImage", planImg[0]);
+      formData.append("sessionId", sessionId);
+      formData.append("prompt", prompt);
 
       const requestOptions = {
         method: "POST",

@@ -96,6 +96,7 @@ ul.profile_item_wrapper li:last-child {
 .quanti_logo{
     height: 50px;
     width: 50px;
+    border-radius: unset;
 
 }
 .header_outer {

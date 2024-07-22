@@ -12,6 +12,7 @@ import get_plan_details_estimates from './PlanSlice/get_plan_details_slice'
 import ChangepasswordSlice from './AuthSlice/ChangepasswordSlice'
 import getLoggedInUserProfile from './AuthSlice/GetUserProfile'
 import UpdateUserProfile from './AuthSlice/UpdateUserProfile'
+import create_session_id from './CreateSessionID/Create_session_id'
 
 
 const store = configureStore({
@@ -28,7 +29,8 @@ const store = configureStore({
     PLAN_ESTIMATES: get_plan_details_estimates,
     CHANGE_PASSWORD_SLICE: ChangepasswordSlice,
     USER_PROFILE: getLoggedInUserProfile,
-    UPDATE_USER_PROFILE: UpdateUserProfile
+    UPDATE_USER_PROFILE: UpdateUserProfile,
+    SESSION_ID: create_session_id
 
 
   },
