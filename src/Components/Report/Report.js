@@ -29,6 +29,7 @@ const Report = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
   const [chat_data, setChat_data] = useState([])
+  console.log(chat_data, "hvhhfhghvfhmvhhgvguvgvghchchgkchch")
   const logged_in_user_details = useSelector((store) => store?.USER_PROFILE);
   const [current_index, setCurrent_index] = useState(0)
   const [prompt, setPrompt] = useState("")
@@ -61,15 +62,48 @@ const Report = () => {
 
   useEffect(() => {
     if (plan_estimates?.isSuccess) {
-      setChat_data(plan_estimates?.data?.data?.chat)
-      setSessionId(plan_estimates?.data?.data?.sessionId)
-      setCurrent_index(plan_estimates?.data?.data?.chat?.length)
+      // Extracting data from plan_estimates
+      const { data } = plan_estimates.data?.data?.chat;
+
+      // Check if data exists before processing
+      if (plan_estimates.data?.data?.chat) {
+        // setChat_data(data.chat);
+        setSessionId(plan_estimates.data?.data?.sessionId);
+        setCurrent_index(plan_estimates.data?.data?.chat.length);
+
+        // Process each item in the chat array
+        plan_estimates.data?.data?.chat?.forEach((item, index) => {
+          let processedContent;
+          const tableRegex = /^\|.*\|$/m;
+
+          const determineFormat = (item) => {
+            if (tableRegex.test(item.message)) {
+              return "table";
+            }
+            return "default";
+          };
+
+          let format = determineFormat(item?.message);
+          if (format === "table") {
+            processedContent = formatTableContent(item?.message);
+          } else {
+            processedContent = formatContent(item?.message);
+          }
+
+          // Update chat_data with processed message
+          setChat_data(prevChatData => {
+            let updatedData = [...prevChatData];
+            updatedData[index] = { ...updatedData[index], message: processedContent, sender: item?.sender };
+            return updatedData;
+          });
+        });
+      }
     }
 
     if (plan_estimates?.isError) {
-      toast.error("Something went wrong")
+      toast.error("Something went wrong");
     }
-  }, [plan_estimates])
+  }, [plan_estimates]);
 
   let imageUrl;
   useEffect(() => {
