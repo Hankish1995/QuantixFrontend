@@ -20,10 +20,10 @@ const EditProfile = ({ show, setShow }) => {
     const handleDrop = (e) => {
         e.preventDefault();
         setHandleImage(true)
-        const file = e.dataTransfer.files[0];
-        if (file.type === 'image/jpeg' || file.type === 'image/png') {
+        const file = e?.dataTransfer?.files[0];
+        if (file?.type === 'image/jpeg' || file?.type === 'image/png') {
             setImageName(file);
-            const imageURL = URL.createObjectURL(file);
+            const imageURL = URL?.createObjectURL(file);
             setImage(imageURL);
         } else {
             toast.error("Only JPG or PNG files are allowed");
@@ -31,11 +31,11 @@ const EditProfile = ({ show, setShow }) => {
     };
 
     const handlePreviewImage = (e) => {
-        const file = e.target.files[0];
+        const file = e?.target?.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setImage(reader.result);
+                setImage(reader?.result);
             };
             reader.readAsDataURL(file);
         }
